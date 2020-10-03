@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.scss';
 
+
+import {MainView} from '../HomePage/MainView/MainView';
+// import { Main } from '../Main/Main'
+// import { Navigation } from '../Navigation/Navigation'
+// import { NotFound } from '../NotFound/NotFound';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          test
-        </p>
-      </header>
-    </div>
+    <MainView />
   );
 }
 

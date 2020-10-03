@@ -1,0 +1,45 @@
+
+
+.search--bar {
+    height: 50vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        color: #757575;
+        font-weight: 300;
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        a {
+            width: 12.5rem;
+            height: 9.375rem;
+            filter: brightness(40%);
+
+            text-decoration: none;
+            color: #313131;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, font-weight 0.3s, opacity 0.2s, filter 0.2s;
+            opacity: 30%;
+        }
+
+        a:hover {
+            font-weight: 700;
+            transform: scale(1.2);
+            opacity: 100%;
+            cursor: pointer;
+            filter: brightness(100%);
+        }
+    }
+}

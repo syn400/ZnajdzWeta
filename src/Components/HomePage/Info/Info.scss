@@ -1,0 +1,110 @@
+
+.contact {
+    display: flex;
+    height: 40vh;
+    width: 100%;
+    margin: 0 auto;
+    color: #757575;
+    align-items: center;
+
+    
+    & > div {
+        height: 80%;
+        width: 80%;
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div.register {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        h2 {
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-size: 3rem;
+        }
+
+
+        p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            border-radius: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        button {
+            color: #ffffff;
+            background-color: #3f8d438a;
+            font-size: 2rem;
+            border: none;
+            border-radius: 2rem;
+            padding: 2rem 8.7rem;
+            transition: transform 0.2s, background-color 0.5s;
+
+            &:focus {
+                outline: 0;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: #54a058;
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    div.info--container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15%;
+
+        p {
+            font-size: 1.2rem;
+            font-weight: 200;
+            margin-top: 1rem;
+
+            span {
+                margin-right: 0.7rem;
+            }
+        }
+
+        h2 {
+            font-weight: 300;
+            font-size: 2rem;
+        }
+
+        .socials {
+            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+        }
+        a {
+            margin-right: 1.5rem;
+            display: inline-block;
+            font-size: 2rem;
+            transition: transform 0.3s, filter 0.2s;
+
+            &.tt {
+                color: #1DA1F2;
+            }
+
+            &.fb {
+                color: #3b5998;
+            }
+
+            &.ig {
+                color: #C13584;
+            }
+
+            &:hover {
+                transform: scale(1.5);
+                filter: brightness(115%);
+                cursor: pointer;
+            }
+        }
+    }
+}
