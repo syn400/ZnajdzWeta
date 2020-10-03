@@ -3,6 +3,7 @@ import './Info.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookSquare, faInstagramSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 export const Info = () => {
     return (
@@ -11,7 +12,9 @@ export const Info = () => {
                 <div className='register' data-aos='zoom-out'>
                     <h2>Jesteś weterynarzem?</h2>
                     <p>Na co czekasz? Załóż swój profil!</p>
-                    <button>Zarejestruj się</button>
+                    <Link to='/register' style={{textDecoration: 'none'}}>
+                        <button>Zarejestruj się</button>
+                    </Link>
                 </div>
 
                 <div className='info--container'  data-aos='fade-left'>

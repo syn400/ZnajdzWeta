@@ -19,7 +19,7 @@
     div {
         display: flex;
         flex-wrap: wrap;
-        a {
+        span {
             width: 12.5rem;
             height: 9.375rem;
             filter: brightness(40%);
@@ -31,10 +31,10 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.3s, font-weight 0.3s, opacity 0.2s, filter 0.2s;
-            opacity: 30%;
+            opacity: 35%;
         }
 
-        a:hover {
+        span:hover {
             font-weight: 700;
             transform: scale(1.2);
             opacity: 100%;
