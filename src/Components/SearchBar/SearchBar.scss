@@ -19,10 +19,21 @@
     div {
         display: flex;
         flex-wrap: wrap;
+
+        .active {
+            span {
+                font-weight: 700;
+                filter: brightness(100%);
+                opacity: 100%;
+                transform: scale(1.0);
+            }
+        }
+
         span {
             width: 12.5rem;
             height: 9.375rem;
             filter: brightness(40%);
+            opacity: 35%;
 
             text-decoration: none;
             color: #313131;
@@ -31,7 +42,7 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.3s, font-weight 0.3s, opacity 0.2s, filter 0.2s;
-            opacity: 35%;
+
         }
 
         span:hover {

@@ -1,0 +1,82 @@
+
+
+.Banner--overwrite {
+    .banner {
+        height: 30vh;
+    }
+    .user {
+        display: none;
+    }
+}
+
+.register--container {
+    height: 100%;
+    width: 70%;
+    margin: 2rem auto;
+
+    form {
+        font-size: 0.8rem;
+        padding: 1rem 8rem 1rem;
+        max-width: 65%;
+        margin: 0 auto;
+        border-radius: 2px;
+
+    h2 {
+        margin:0 0 4rem 0;
+        padding: 0.8rem;
+        text-align:center;
+        font-size: 2.5rem;
+        color: #757575;
+        border-bottom:solid 1px #e5e5e5;
+    }
+    p {
+        margin: 0 0 2rem 0;
+        position: relative;
+    }
+    input {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        outline: none;
+        margin:0;
+    }
+    input[type="text"],
+    input[type="password"] {
+        background: #fff;
+        border: 1px solid #dbdbdb;
+        font-size: 1.2rem;
+        padding: 1rem .8rem;
+        border-radius: 0.1rem;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        background: #fff
+    }
+    span {
+        display: block;
+        font-weight: 600;
+        background: #F9A5A5;
+        line-height: 2rem;
+        padding: 0 1rem;
+        color: #363636;
+    }
+    input[type="submit"] {
+        border: none;
+        border-radius: 2rem;
+        padding: 1.5rem 3rem;
+
+        color: #ffffffe5;
+        background-color: #3f8d43;
+        transition: background-color 0.3s, color 0.5s;
+
+        font-weight: 600;
+    }
+    input[type="submit"]:hover {
+        background-color: #3f8d438a;
+        color: #ffffff81;
+        cursor: pointer;
+    }
+
+    
+    }
+}

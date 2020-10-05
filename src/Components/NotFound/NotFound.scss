@@ -1,0 +1,33 @@
+
+
+.not--found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    color: #757575;
+
+    h1 { 
+        font-size: 14rem;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 4rem;
+        font-weight: 400;
+    }
+
+    p {
+        color: #acacac;
+        margin-top: 3rem;
+        font-size: 2rem;
+        transition: color 0.2s, transform 0.2s;
+
+        &:hover {
+            color: #535353;
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
+}

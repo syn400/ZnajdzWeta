@@ -12,7 +12,7 @@ export const Info = () => {
                 <div className='register' data-aos='zoom-out'>
                     <h2>Jesteś weterynarzem?</h2>
                     <p>Na co czekasz? Załóż swój profil!</p>
-                    <Link to='/register' style={{textDecoration: 'none'}}>
+                    <Link to='/rejestracja' style={{textDecoration: 'none'}}>
                         <button>Zarejestruj się</button>
                     </Link>
                 </div>
