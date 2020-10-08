@@ -23,6 +23,15 @@ export const SearchSite = ({match}) => {
         {name: 'test12', id: 11}
     ]);
 
+    const [specializations] = useState([
+        {name: 'Profilaktyka'},
+        {name: 'Dermatologia'},
+        {name: 'Okulistyka'},
+        {name: 'Stomatologia'},
+        {name: 'Diagnostyka'},
+        {name: 'Chirurgia'}
+    ]);
+
     if(result === 'psy-i-koty' ||
      result === 'male-zwierzeta' ||
       result === 'gady-i-plazy' ||
@@ -52,7 +61,7 @@ export const SearchSite = ({match}) => {
                         singleSelect={true}
                         />
 
-                        <Multiselect closeOnSelect={false} placeholder='Wybierz specjalizacje' selectionLimit={4} closeIcon='circle' options={options} selectedValues={options.selectedValue} displayValue="name"
+                        <Multiselect closeOnSelect={false} placeholder='Wybierz specjalizacje' selectionLimit={2} closeIcon='circle' options={specializations} selectedValues={options.selectedValue} displayValue="name"
                         style={{
                             multiselectContainer: {width:'40%', fontWeight: 400},
                             chips: { background: '#54a058'}, 

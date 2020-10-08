@@ -12,7 +12,7 @@
 .register--container {
     height: 100%;
     width: 70%;
-    margin: 2rem auto;
+    margin: 1rem auto;
 
     form {
         font-size: 0.8rem;
@@ -63,12 +63,15 @@
     input[type="submit"] {
         border: none;
         border-radius: 2rem;
-        padding: 1.5rem 3rem;
+        padding: 1rem 3rem;
+        width: 20rem;
+        margin: 0 auto;
 
         color: #ffffffe5;
         background-color: #3f8d43;
         transition: background-color 0.3s, color 0.5s;
 
+        font-size: 1.4rem;
         font-weight: 600;
     }
     input[type="submit"]:hover {
@@ -76,7 +79,17 @@
         color: #ffffff81;
         cursor: pointer;
     }
+    }
 
-    
+    .home--button {
+        text-decoration: none;
+        text-align:center;
+        font-size: 1.2rem;
+        color: #3278da9d;
+
+        &:hover {
+            color: #3278da;
+            text-decoration: underline;
+        }
     }
 }

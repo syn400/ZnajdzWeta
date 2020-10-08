@@ -1,6 +1,7 @@
 .login--window {
-
     position: absolute;
+    z-index: 1;
+
     top: 4.5rem;
 
     width: 20%;
@@ -10,6 +11,7 @@
     flex-direction: column;
     justify-content: center;
     background-color:  #ffffff5b;
+    box-shadow: -1px 7px 20px -6px rgba(0,0,0,0.67);
 
     border-radius: 3rem;
 
@@ -65,6 +67,18 @@
             color: #3278da;
             text-decoration: underline;
         }
+    }
+
+    .login--error {
+        top: 2%;
+        position: absolute;
+        display: block;
+        line-height: 1.3rem;
+        border-radius: 2rem;
+        padding: 0 1rem;
+        background: #d10b0bbe;
+        color: #ffffffc5;
+        margin-bottom: 1rem;
     }
 
 }

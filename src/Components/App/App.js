@@ -3,7 +3,8 @@ import './App.scss';
 
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { MainView } from '../HomePage/MainView/MainView';
+import ScrollToTop from '../ScrollToTop';
+import { MainView } from '../HomePage/MainView';
 import { SearchSite } from '../SearchSite/SearchSite';
 import { NotFound } from '../NotFound/NotFound';
 import { RegisterSite } from '../RegisterSite/RegisterSite';
@@ -13,6 +14,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <ScrollToTop />
         <Switch>
           <Route exact path='/' component={MainView} />
           <Route exact path='/rejestracja' component={RegisterSite} />

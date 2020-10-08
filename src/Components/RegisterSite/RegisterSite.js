@@ -1,8 +1,10 @@
 import React , {useState, useCallback} from 'react';
+import { Link } from 'react-router-dom';
 import './RegisterSite.scss';
 import { Banner } from '../HomePage/Banner/Banner';
 import { Footer } from '../HomePage/Footer/Footer';
 import app from '../../fire';
+
 
 export const RegisterSite = ({history}) => {
 
@@ -87,7 +89,12 @@ export const RegisterSite = ({history}) => {
                 </p>
             </form>
 
+            <Link to='/' className='home--button'>
+                <h2>Powrót na stronę główną</h2>
+            </Link>
+
         </section>
+
 
         <Footer />
     </>

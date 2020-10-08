@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useCallback, useState} from 'react';
 import './LoginWindow.scss';
 import { Link } from 'react-router-dom';
+import app from '../../fire';
 
-export const LoginWindow = (props) => {
+import { animations } from 'react-animation';
+
+
+export const LoginWindow = ({history}) => {
+    const [passwordError, setPasswordError] = useState('');
+
+    const handleLogin = useCallback(
+        async event => {
+          event.preventDefault();
+          const { email, password } = event.target.elements;
+          try {
+            await app
+              .auth()
+              .signInWithEmailAndPassword(email.value, password.value);
+            history.push("/");
+          } catch (error) {
+            setPasswordError('Błędny login lub hasło');
+          }
+        },
+        [history]
+      );
+
     return (
-        <div class="login--window" data-aos={props.anim}>
-            <form class="login--container">
-                <input type="text" placeholder="E-mail" name="email" required />
+        <div className="login--window" style={{ animation: animations.popIn}}>
+            <form className="login--container" onSubmit={handleLogin}>
+                <input type="email" placeholder="E-mail" name="email" required />
 
-                <input type="password" placeholder="Hasło" name="psw" required />
+                <input type="password" placeholder="Hasło" name="password" required />
+                <span className='login--error'>{passwordError}</span>
 
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" className="btn">Login</button>
             </form>
-            <Link to='/odzyskiwanie-hasla' style={{textDecoration: 'none', color: '#1f4b88'}}>
+            <div>
+              <Link to='/odzyskiwanie-hasla' style={{textDecoration: 'none', color: '#1f4b88'}}>
                 <p>Nie pamiętasz hasła?</p>
-            </Link>
-            <Link to='/rejestracja' style={{textDecoration: 'none', color: '#1f4b88'}}>
-                <p>Nie masz jeszcze konta?<br/> Zarejestruj się!</p>
-            </Link>
+              </Link>
+              <Link to='/rejestracja' style={{textDecoration: 'none', color: '#1f4b88'}}>
+                  <p>Nie masz jeszcze konta?<br/> Zarejestruj się!</p>
+              </Link>
+            </div>
+
         </div>
     );
 }
