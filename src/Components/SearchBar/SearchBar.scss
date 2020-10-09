@@ -24,7 +24,7 @@
             span {
                 font-weight: 700;
                 filter: brightness(100%);
-                opacity: 100%;
+                opacity: 1;
                 transform: scale(1.0);
             }
         }
@@ -33,7 +33,7 @@
             width: 12.5rem;
             height: 9.375rem;
             filter: brightness(40%);
-            opacity: 35%;
+            opacity: 0.35;
 
             text-decoration: none;
             color: #313131;
@@ -48,7 +48,7 @@
         span:hover {
             font-weight: 700;
             transform: scale(1.2);
-            opacity: 100%;
+            opacity: 1;
             cursor: pointer;
             filter: brightness(100%);
         }
