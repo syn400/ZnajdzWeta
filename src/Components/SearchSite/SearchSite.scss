@@ -1,7 +1,7 @@
 
 .SearchBar--overwrite {
     .search--bar {
-        height: 20vh;
+        height: 23vh;
         h2 {
             display: none;
         }
@@ -17,7 +17,6 @@
 .search--results {
     margin: 1rem auto;
     width: 80%;
-    height: 120vh;
 
     hr {
 
@@ -30,15 +29,101 @@
 
     .filters {
         width: 100%;
-        height: 10%;
+        height: 5rem;
         display: flex;
         align-items: center;
-        
+        justify-content: space-evenly;
+
+        .search--button {
+            border: none;
+            border-radius: 0.3rem;
+            height: 2.2rem;
+            padding: 0 3rem;
+
+            color: #ffffffe5;
+            background-color: #3f8d43;
+            transition: background-color 0.5s, color 0.5s;
+
+            font-weight: 600;
+
+            span {
+                margin-left: 0.4rem;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            &:hover {
+                background-color: #3f8d438a;
+                color: #ffffff81;
+                cursor: pointer;
+            }
+        }
     }
     
     .result--list {
         width: 100%;
         height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+        .result--message {
+            width: 100%;
+            height: 12.5rem;
+            font-weight: 500;
+            font-size: 2.2rem;
+            color: #757575;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .wet--widget {
+            border: 2px solid #3f8d43;
+            color: #313131;
+            // background-color: #3f8d431f;
+            border-radius: 1rem;
+            margin: 2rem;
+            padding: 2rem;
+            width: 100%;
+            display: flex;
+            // justify-content: space-around;
+
+            .info {
+                font-size: 1.5rem;
+                margin-left: 3rem;
+
+                .rating {
+                    font-size: 1rem;
+                }
+
+                hr {
+                    width: 25rem;
+                    height: 1px;
+                    background-color: #757575a2;
+                    margin: 1.5rem 0;
+                }
+
+                h2 {
+                    font-size: 2rem;
+                    font-weight: 500;
+                }
+
+                p {
+                    margin: 1rem 0;
+                }
+            }
+
+            img {
+                width: 15rem;
+                border-radius: 3rem;
+            }
+        }
     }
 }
 

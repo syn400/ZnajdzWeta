@@ -8,7 +8,6 @@ import reptiles from '../../images/gady i płazy.png';
 import birds from '../../images/ptaki.png';
 import fish from '../../images/ryby.png';
 import exotic from '../../images/Zwierzęta egzotyczne.png';
-// import { faBorderNone } from '@fortawesome/free-solid-svg-icons';
 
 
 export const SearchBar = () => {

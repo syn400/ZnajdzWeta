@@ -3,8 +3,12 @@ import app from '../../fire'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+
 export const UserPanel = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const email = firebase.auth().currentUser.email;
 
     const userMenu = () => {
         if(isVisible) {
@@ -16,8 +20,8 @@ export const UserPanel = () => {
 
     return (
         <>
-        <button onClick={()=>setIsVisible(!isVisible)}>
-            <h3>Panel użytkownika</h3>
+        <button onClick={()=>setIsVisible(!isVisible)} style={{position: 'absolute'}}>
+            <h3>{email}</h3>
             <p><FontAwesomeIcon icon={faGrinAlt}/></p>
         </button>
 
