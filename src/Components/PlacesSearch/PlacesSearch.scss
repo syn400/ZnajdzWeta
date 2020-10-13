@@ -1,0 +1,56 @@
+.PlacesSearch--container {
+    position: relative;
+    width: 30rem;
+    text-align: left;
+    font-weight: 400;
+
+    .input--container {
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        padding: 5px;
+        min-height: 22px;
+        position: relative;
+        background: rgba(255, 255, 255, 0.898);
+        font-weight: 400;
+        height: 2.2rem;
+
+        input {
+            border: none;
+            margin: auto 0;
+            background: transparent;
+            padding: 5px 2px;
+            width: 100%;
+
+            &:focus {
+                outline-width: 0;
+            }
+        }
+
+        .autocomplete-dropdown-container {
+            position: absolute;
+            width: 100%;
+            margin-top: 1px;
+            z-index: 1;
+        
+            .autocomplete-options-dropdown-container {
+                display: block;
+                position: relative;
+                z-index: 1;
+                left: -5px;
+                top: 6px;
+                background-color: #ffffff;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+        
+                div {
+                    padding: 10px;
+                    display: block;
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.nav--overwrite {
+    height: 31vh;
+
+    .title {
+        transition: color 0.4s, transform 0.4s;
+
+        &:hover {
+            color: #d1d1d19c;
+            transform: scale(1.05);
+        }
+    }
+
+    .login--window {
+        background-color: #ffffff9f;
+    }
+}

@@ -28,7 +28,7 @@ export const About = () => {
                 <hr />
 
                 <div className='comments--container'>
-                    <div clasName='comment'>
+                    <div className='comment'>
                         <div>
                             <img src='https://images.pexels.com/photos/936229/pexels-photo-936229.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' alt='Avatar' />
                             <span>
@@ -38,7 +38,7 @@ export const About = () => {
                         </div>
                     </div>
 
-                    <div clasName='comment'>
+                    <div className='comment'>
                         <div>
                             <img src='https://images.pexels.com/photos/2992516/pexels-photo-2992516.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' alt='Avatar' />
                             <span>
@@ -48,7 +48,7 @@ export const About = () => {
                         </div>
                     </div>
 
-                    <div clasName='comment'>
+                    <div className='comment'>
                         <div>
                             <img src='https://images.pexels.com/photos/3059274/pexels-photo-3059274.png?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' alt='Avatar' />
                             <span>

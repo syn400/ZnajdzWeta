@@ -1,14 +1,17 @@
-import React, { useState, useContext } from 'react';
-import './Banner.scss';
+import React, {useState, useContext} from 'react';
+import './NavBar.scss';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { LoginWindow } from '../../LoginWindow/LoginWindow';
+import { LoginWindow } from '../LoginWindow/LoginWindow';
 
-import { PrivateRoute } from '../../PrivateRoute';
-import { UserPanel } from '../../UserPanel/UserPanel';
-import { AuthContext } from "../../../Auth.js";
+import { PrivateRoute } from '../PrivateRoute';
+import { UserPanel } from '../UserPanel/UserPanel';
+import { AuthContext } from "../../Auth.js";
 
-export const Banner = () => {
+
+
+export const NavBar = () => {
     const [loginVisible, setLoginVisible] = useState(false);
 
     const { currentUser } = useContext(AuthContext);
@@ -31,15 +34,16 @@ export const Banner = () => {
     }
 
     return (
-        <header className='banner'>
+        <nav className='banner nav--overwrite'>
             <div className='title--box'>
-                <h1 className='title'>ZnajdźWeta</h1>
-                <p>Zaufało nam już { 0 } weterynarzy z całej Polski!</p> {/*(tu będzie liczba zarejestrowanych uytkowników)*/}
+                <Link to='/' style={{textDecoration: 'none', color: '#ffffffe5'}}>
+                    <h1 className='title'>ZnajdźWeta</h1>
+                </Link>
             </div>
-            
+
             <div className='user'>
                 {isLoggedIn()}
             </div>
-        </header>
+        </nav>
     );
 }
