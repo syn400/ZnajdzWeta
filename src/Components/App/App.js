@@ -9,6 +9,7 @@ import { SearchSite } from '../SearchSite/SearchSite';
 import { NotFound } from '../NotFound/NotFound';
 import { RegisterSite } from '../RegisterSite/RegisterSite';
 import { AuthProvider } from '../../Auth';
+import { ForgotPasswordSite } from '../ForgotPasswordSite/ForgotPasswordSite';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={MainView} />
           <Route exact path='/rejestracja' component={RegisterSite} />
+          <Route exact path='/odzyskiwanie-hasla' component={ForgotPasswordSite} />
           <Route exact path="/:animals" component={SearchSite} />
           <Route component={NotFound} />
         </Switch>
