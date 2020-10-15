@@ -16,13 +16,14 @@ export const RegisterSite = ({history}) => {
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [messageVisible, setMessageVisible] = useState(false);
 
+
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
         try {
           await app
             .auth()
-            .createUserWithEmailAndPassword(email.value, password.value);
+            .createUserWithEmailAndPassword(email.value, password.value)
             setMessageVisible(true);
             const timeout = setTimeout(() => {
                 history.push("/")

@@ -1,16 +1,15 @@
 import React, { useState, useContext } from 'react';
 import './Banner.scss';
+import { AuthContext } from "../../../Auth.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { LoginWindow } from '../../LoginWindow/LoginWindow';
 
 import { PrivateRoute } from '../../PrivateRoute';
 import { UserPanel } from '../../UserPanel/UserPanel';
-import { AuthContext } from "../../../Auth.js";
 
 export const Banner = () => {
     const [loginVisible, setLoginVisible] = useState(false);
-
     const { currentUser } = useContext(AuthContext);
 
     const isLoggedIn = () => {

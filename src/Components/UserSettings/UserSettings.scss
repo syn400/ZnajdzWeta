@@ -1,0 +1,85 @@
+.settings--container, .vet--profile--container, .endMsg {
+    height: 60rem;
+    width: 80%;
+    background-color: #348AA7;
+    border-radius: 2rem;
+    margin: 2rem auto;
+}
+
+.endMsg {
+    height: 27rem;
+}
+
+.vet--profile--container {
+    padding: 4rem;
+    background-image: url('https://image.freepik.com/free-photo/young-female-veterinarian-carrying-dog-clinic_23-2147928595.jpg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 40rem 0;
+
+    hr {
+        width: 30%;
+        height: 1px;
+        background-color: #ffffff;
+        margin: 1rem 0;
+        border: none;
+    }
+
+    form {
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 8rem 1rem;
+        margin: 0 30rem 0 0;
+        border-radius: 2px;
+    }
+
+    p {
+        margin-bottom: 0.3rem;
+        color: #ffffff;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #ffffff;
+    }
+    .error {
+        display: block;
+        font-weight: 400;
+        font-size: 0.8rem;
+        background: #e93d3dc4;
+        line-height: 1.2rem;
+        padding: 0 1rem;
+        color: #ffffff;
+        border-radius: 0 0 1rem 1rem;
+        position: absolute;
+    }
+
+    input[type="submit"] {
+        border: none;
+        border-radius: 2rem;
+        padding: 1rem 3rem;
+        width: 20rem;
+        margin: 0 auto;
+
+        
+        color: #ffffff81;
+        background-color: #525174;
+        transition: background-color 0.3s, color 0.5s;
+
+        font-size: 1.4rem;
+        font-weight: 600;
+    
+        &:focus {
+            outline: none;
+        }
+        
+        &:hover {
+            background-color: #513B56;
+            color: #ffffffe5;
+            cursor: pointer;
+        }
+    }
+}

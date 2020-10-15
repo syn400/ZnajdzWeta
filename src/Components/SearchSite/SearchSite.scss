@@ -86,13 +86,11 @@
         .wet--widget {
             border: 2px solid #3f8d43;
             color: #313131;
-            // background-color: #3f8d431f;
             border-radius: 1rem;
             margin: 2rem;
             padding: 2rem;
             width: 100%;
             display: flex;
-            // justify-content: space-around;
 
             .info {
                 font-size: 1.5rem;
@@ -121,7 +119,9 @@
 
             img {
                 width: 15rem;
+                height: 15rem;
                 border-radius: 3rem;
+                object-fit: cover;
             }
         }
     }

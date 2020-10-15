@@ -5,7 +5,7 @@ import { Footer } from '../HomePage/Footer/Footer';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { Multiselect } from 'multiselect-react-dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faSearch, faMapMarkerAlt, faUserMd, faPaw } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faSearch, faMapMarkerAlt, faUserMd, faPaw, faPhone } from '@fortawesome/free-solid-svg-icons';
 import './SearchSite.scss';
 import { PlacesSearch } from '../PlacesSearch/PlacesSearch';
 import firebase from 'firebase/app';
@@ -61,30 +61,26 @@ export const SearchSite = ( {match} ) => {
         db.collection("wets").get().then((documentSnapshot) => {
             let array = [];
             documentSnapshot.forEach((doc) => {
-                if(spec.some((e) => doc.data().Specialization.includes(e)) && city.includes(doc.data().City) && doc.data().Category.includes(category)) {
-                    array.push(doc.data());
-                }
+                if(doc.data().Verified === true &&
+                    spec.some((e) => doc.data().Specialization.includes(e)) &&
+                    city.includes(doc.data().City) &&
+                    doc.data().Category.includes(category)) {
+                        array.push(doc.data());
+                    }
             });
             setResults(array);
         })
     }
 
-    const addSpecialization = (e) => {
+    const getSpecialization = (e) => {
         if(e.length > 1) {
             const [{name: first}, {name: second}] = e;
             setSpecialization([first, second]);
-        } else {
+        } else if (e.length === 1 ){
             const [{name: one}] = e;
             setSpecialization([one]);
-        }
-    }
-
-    const removeSpecialization = (e) => {
-        if(e.length < 1) {
-            setSpecialization([]);
         } else {
-            const [{name: remove}] = e;
-            setSpecialization([remove]);
+            setSpecialization([]);
         }
     }
 
@@ -115,9 +111,10 @@ export const SearchSite = ( {match} ) => {
                                 selectionLimit={2} 
                                 closeIcon='circle' 
                                 displayValue="name"
-                                emptyRecordMsg="Nie"
-                                onSelect={addSpecialization}
-                                onRemove={removeSpecialization}
+                                hidePlaceholder={true}
+                                emptyRecordMsg="Brak opcji."
+                                onSelect={getSpecialization}
+                                onRemove={getSpecialization}
                                 style={{
                                     multiselectContainer: {width:'30rem', fontWeight: 400},
                                     chips: { background: '#54a058'}, 
@@ -155,6 +152,7 @@ export const SearchSite = ( {match} ) => {
                                         <p><FontAwesomeIcon icon={faPaw}/> {e.Category.length > 1 ? e.Category.join(', ') : e.Category}</p>
                                         <p><FontAwesomeIcon icon={faUserMd}/> {e.Specialization.length > 1 ? e.Specialization.join(', ') : e.Specialization}</p>
                                         <p><FontAwesomeIcon icon={faMapMarkerAlt}/> {e.Address}, {e.City}</p>
+                                        <p><FontAwesomeIcon icon={faPhone}/> {e.Phone}</p>
                                     </div>
                                 </div>
                             );})
