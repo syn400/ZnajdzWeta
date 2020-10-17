@@ -14,6 +14,8 @@ import 'firebase/auth';
 export const UserPanel = () => {
     const [isVisible, setIsVisible] = useState(false);
     const email = firebase.auth().currentUser.email;
+    // const email = localStorage.getItem('currentUser').email;
+
 
     const userMenu = () => {
         if(isVisible) {

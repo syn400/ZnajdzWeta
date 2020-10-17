@@ -88,44 +88,56 @@
         }
 
         .wet--widget {
-            background-color: #e9e9e9;
-            color: #313131;
-            border-radius: 1rem;
-            margin: 1.5rem;
-            padding: 2rem;
-            width: 100%;
             display: flex;
+            width: 100%;
+            height: 20rem;
+            background-color: #e9e9e9;
+            margin: 1.5rem;
+            color: #313131;
+            border-radius: 2rem;
 
-            .info {
-                font-size: 1.5rem;
-                margin-left: 3rem;
-
-                .rating {
-                    font-size: 1rem;
-                }
-
-                hr {
-                    width: 25rem;
-                    height: 1px;
-                    background-color: #757575a2;
-                    margin: 1.5rem 0;
-                }
-
-                h2 {
-                    font-size: 2rem;
-                    font-weight: 500;
-                }
-
-                p {
-                    margin: 1rem 0;
-                }
+            & > img {
+                width: 30%;
+                object-fit: cover;
+                border-radius: 0 2rem 2rem 0;
             }
 
-            img {
-                width: 15rem;
-                height: 15rem;
-                border-radius: 10rem;
-                object-fit: cover;
+            .info--container {
+                width: 70%;
+                padding: 2rem;
+                display: flex;
+
+                .info {
+                    font-size: 1.3rem;
+                    margin-left: 3rem;
+
+                    .rating {
+                        font-size: 1rem;
+                    }
+
+                    hr {
+                        width: 25rem;
+                        height: 1px;
+                        background-color: #757575a2;
+                        margin: 1.5rem 0;
+                    }
+
+                    h2 {
+                        font-size: 2rem;
+                        font-weight: 500;
+                    }
+
+                    p {
+                        margin: 1rem 0;
+                    }
+                }
+
+                .usr--avatar {
+                    width: 15rem;
+                    height: 15rem;
+                    border-radius: 10rem;
+                    object-fit: cover;
+                }
             }
         }
     }
@@ -189,49 +201,64 @@
             .wet--widget {
                 display: flex;
                 flex-direction: column;
-                height: 26.5rem;
+                width: 100%;
+                height: 30rem;
+                background-color: #e9e9e9;
 
-                .info {
-                    font-size: 0.5rem;
-                    margin-left: 0;
-                    position: relative;
-                    top: -3.9rem;
-
-                    .rating {
-                        font-size: 1rem;
-                    }
-
-                    hr {
-                        width: 30%;
-                        height: 1px;
-                        background-color: #757575a2;
-                        margin: 1.5rem 0;
-                    }
-
-                    h2 {
-                        position: relative;
-                        width: 43%;
-                        left: 6.5rem;
-                        top: -0.8rem;
-                        font-size: 2rem;
-                        font-weight: 500;
-                    }
-
-                    p {
-                        margin: 1rem 0;
-                    }
-
-                    span {
-                        display: flex;
-                        flex-direction: column;
-                        font-size: 1rem;
-                    }
-                }
-
-                img {
-                    width: 5rem;
-                    height: 5rem;
+                & > img {
+                    width: 100%;
+                    height: 9rem;
                     object-fit: cover;
+                    border-radius: 0 0 2rem 2rem;
+                }
+    
+                .info--container {
+                    width: 100%;
+                    padding: 2rem;
+                    flex-direction: column;
+
+                    .info {
+                        font-size: 0.5rem;
+                        margin-left: 0;
+                        position: relative;
+                        top: -3.9rem;
+
+                        .rating {
+                            font-size: 1rem;
+                        }
+
+                        hr {
+                            width: 100%;
+                            height: 1px;
+                            background-color: #757575a2;
+                            margin: 0.8rem 0;
+                        }
+
+                        h2 {
+                            position: relative;
+                            width: 43%;
+                            left: 6.5rem;
+                            top: -0.8rem;
+                            font-size: 2rem;
+                            font-weight: 500;
+                        }
+
+                        p {
+                            margin: 0.6rem 0;
+                        }
+
+                        span {
+                            display: flex;
+                            flex-direction: column;
+                            font-size: 1rem;
+                        }
+                    }
+
+                    .usr--avatar {
+                        width: 5rem;
+                        height: 5rem;
+                        object-fit: cover;
+                    }
                 }
             }
         }

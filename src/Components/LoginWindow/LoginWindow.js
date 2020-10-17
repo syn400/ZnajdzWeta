@@ -19,6 +19,7 @@ export const LoginWindow = ({history}) => {
               .signInWithEmailAndPassword(email.value, password.value);
             history.push("/");
           } catch (error) {
+            console.log(error);
             setPasswordError('Błędny login lub hasło');
           }
         },

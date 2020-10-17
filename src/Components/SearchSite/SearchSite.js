@@ -9,7 +9,6 @@ import { faStar, faSearch, faMapMarkerAlt, faUserMd, faPaw, faPhone } from '@for
 import './SearchSite.scss';
 import { PlacesSearch } from '../PlacesSearch/PlacesSearch';
 import firebase from 'firebase/app';
-import app from '../../fire';
 
 const db = firebase.firestore();
 
@@ -139,28 +138,31 @@ export const SearchSite = ( {match} ) => {
                             results.map((e) => {
                             return (
                                 <div className='wet--widget' key={e.Name}>
-                                    <div>
-                                        <img src={e.Avatar} alt='Avatar'/>
+                                    <div className='info--container'>
+                                        <div>
+                                            <img className='usr--avatar' src={e.Avatar} alt='Avatar'/>
+                                        </div>
+                                        <div className='info'>
+                                            <h2>{e.Name}</h2>
+                                            <p className='rating'>{
+                                                [...Array(e.Rating)].map((elementInArray, index) => ( 
+                                                    <FontAwesomeIcon key={index} icon={faStar}/>
+                                                    ) 
+                                                )}
+                                            </p>
+                                            <hr />
+                                            <span>
+                                                <p><FontAwesomeIcon icon={faPaw}/> {e.Category.length > 1 ? e.Category.join(', ') : e.Category}</p>
+                                                <p><FontAwesomeIcon icon={faUserMd}/> {e.Specialization.length > 1 ? e.Specialization.join(', ') : e.Specialization}</p>
+                                                <p><FontAwesomeIcon icon={faMapMarkerAlt}/> {e.Address}, {e.City}</p>
+                                                <p><FontAwesomeIcon icon={faPhone}/> {e.Phone}</p>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div className='info'>
-                                        <h2>{e.Name}</h2>
-                                        <p className='rating'>{
-                                            [...Array(e.Rating)].map((elementInArray, index) => ( 
-                                                <FontAwesomeIcon key={index} icon={faStar}/>
-                                                ) 
-                                            )}
-                                        </p>
-                                        <hr />
-                                        <span>
-                                            <p><FontAwesomeIcon icon={faPaw}/> {e.Category.length > 1 ? e.Category.join(', ') : e.Category}</p>
-                                            <p><FontAwesomeIcon icon={faUserMd}/> {e.Specialization.length > 1 ? e.Specialization.join(', ') : e.Specialization}</p>
-                                            <p><FontAwesomeIcon icon={faMapMarkerAlt}/> {e.Address}, {e.City}</p>
-                                            <p><FontAwesomeIcon icon={faPhone}/> {e.Phone}</p>
-                                        </span>
-                                    </div>
+                                    <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${e.City}+${e.Address.replace(" ","+")}+Polska&zoom=14&scale=2&size=600x400&maptype=roadmap&key=AIzaSyAaT7cD6zvSuMc8kw92S9V9c4CmxPYgs8w&format=jpg&visual_refresh=true&markers=size:big%7Ccolor:0x68b66b%7Clabel:%7C${e.City}+${e.Address.replace(" ","+")}+Polska`} alt="Zdjęcie mapy google"/>
                                 </div>
                             )})
-                             : <h1 className='result--message'>{message}</h1>}
+                        : <h1 className='result--message'>{message}</h1>}
                     </div>
                 </section>
                 <Footer />

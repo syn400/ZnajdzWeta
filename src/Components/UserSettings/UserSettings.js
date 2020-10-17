@@ -25,7 +25,7 @@ export const UserSettings = ({match}) => {
             db.collection("wets").doc(currentUser.uid).get()
                 .then((docSnapshot) => {
                 if (docSnapshot.exists) {
-                    setEndMessage(false)
+                    setEndMessage(true)
                 }});
             }
     }, [])
