@@ -1,12 +1,13 @@
 import React, { useCallback, useState} from 'react';
 import './LoginWindow.scss';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import app from '../../fire';
+
 
 import { animations } from 'react-animation';
 
 
-export const LoginWindow = ({history}) => {
+export const LoginWindow = () => {
     const [passwordError, setPasswordError] = useState('');
 
     const handleLogin = useCallback(
@@ -16,14 +17,14 @@ export const LoginWindow = ({history}) => {
           try {
             await app
               .auth()
-              .signInWithEmailAndPassword(email.value, password.value);
-            history.push("/");
+              .signInWithEmailAndPassword(email.value, password.value)
+              window.location.reload()
           } catch (error) {
             console.log(error);
             setPasswordError('Błędny login lub hasło');
           }
         },
-        [history]
+        []
       );
 
     return (

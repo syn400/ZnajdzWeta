@@ -1,20 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import app from '../../fire'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 import './UserPanel.scss';
-
+import { AuthContext } from "../../Auth";
 import { animations } from 'react-animation';
-
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
 
 export const UserPanel = () => {
     const [isVisible, setIsVisible] = useState(false);
-    const email = firebase.auth().currentUser.email;
-    // const email = localStorage.getItem('currentUser').email;
+    const {currentUser} = useContext(AuthContext);
+    const email = currentUser.email;
 
 
     const userMenu = () => {
@@ -31,7 +28,10 @@ export const UserPanel = () => {
                         <p><FontAwesomeIcon icon={faCog} /> Ustawienia konta</p>
                     </Link>
 
-                    <button onClick={() => app.auth().signOut()}>
+                    <button onClick={() => {
+                        app.auth().signOut()
+                        window.location.reload()
+                        }}>
                         <FontAwesomeIcon icon={faSignOutAlt} /> Wyloguj
                     </button>
                 </div>

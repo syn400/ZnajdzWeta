@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import './Banner.scss';
 import { AuthContext } from "../../../Auth.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,23 +8,16 @@ import { LoginWindow } from '../../LoginWindow/LoginWindow';
 import { PrivateRoute } from '../../PrivateRoute';
 import { UserPanel } from '../../UserPanel/UserPanel';
 
-import firebase from 'firebase/app';
-const db = firebase.firestore();
 
 export const Banner = () => {
     const [loginVisible, setLoginVisible] = useState(false);
-    const [users, setUsers] = useState(0);
     const { currentUser } = useContext(AuthContext);
 
-    useEffect(()=> {
-        db.collection('wets').get().then(snap => {
-        setUsers(snap.size);
-     });
-    }, [])
+    let numberOfVets = localStorage.getItem('numberOfVets')
 
     const isLoggedIn = () => {
 
-        if(currentUser) {
+        if(currentUser !== null) {
             return <PrivateRoute component={UserPanel} />
         } else {
             return (
@@ -43,7 +36,7 @@ export const Banner = () => {
         <header className='banner'>
             <div className='title--box'>
                 <h1 className='title'>ZnajdźWeta</h1>
-                <p>Zaufało nam już {users} weterynarzy z całej Polski!</p> {/*(tu będzie liczba zarejestrowanych uytkowników)*/}
+                <p>Zaufało nam już {numberOfVets} weterynarzy z całej Polski!</p>
             </div>
             
             <div className='user'>

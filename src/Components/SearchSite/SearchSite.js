@@ -70,7 +70,9 @@ export const SearchSite = ( {match} ) => {
                     array.push(doc.data());
                 }
             })
-            array.length === 0 ? setMessage('Brak wyników wyszukiwania :(') : console.log('pobrano') ;
+            if(array.length === 0) {
+                setMessage('Brak wyników wyszukiwania :(')
+            };
             setResults(array)
         })
     }

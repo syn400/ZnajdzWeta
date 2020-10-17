@@ -1,20 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import app from './fire';
+import firebase from 'firebase/app';
+const db = firebase.firestore();
 
 
 export const AuthProvider = ({children}) => {
-    const [currentUser, setCurrentUser] = useState(null);
-    // const currentUser = localStorage.getItem('currentUser');
-    // const [currentUser, setCurrentUser] = useState('')
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     useEffect(()=>{
+        db.collection('wets').get().then(snap => {
+            localStorage.setItem('numberOfVets', snap.size);
+        });
+        
         app.auth().onAuthStateChanged((user)=>{
-            setCurrentUser(user)
-            // if(user) {
-            //     localStorage.setItem('currentUser', JSON.stringify(user));
-            // } else {
-            //     localStorage.removeItem('currentUser');
-            // }
+            if(user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+
+                db.collection("wets").doc(user.uid).get()
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists) {
+                        localStorage.setItem('userWetProfileExists', true);
+                    }});
+            } else {
+                localStorage.removeItem('currentUser');
+                localStorage.setItem('userWetProfileExists', false);
+            }
         });
     }, []);
 
