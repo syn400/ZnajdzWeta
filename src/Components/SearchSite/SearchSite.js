@@ -5,10 +5,11 @@ import { Footer } from '../HomePage/Footer/Footer';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { Multiselect } from 'multiselect-react-dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faSearch, faMapMarkerAlt, faUserMd, faPaw } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faSearch, faMapMarkerAlt, faUserMd, faPaw, faPhone } from '@fortawesome/free-solid-svg-icons';
 import './SearchSite.scss';
 import { PlacesSearch } from '../PlacesSearch/PlacesSearch';
 import firebase from 'firebase/app';
+import app from '../../fire';
 
 const db = firebase.firestore();
 
@@ -17,6 +18,7 @@ export const SearchSite = ( {match} ) => {
     const [results, setResults] = useState([]);
     const [city, setCity] = useState('');
     const [category, setCategory] = useState('');
+    const [message, setMessage] = useState('Wybierz specjalizację oraz miasto aby wyszukać');
     
     const result = match.params.animals;
 
@@ -57,34 +59,32 @@ export const SearchSite = ( {match} ) => {
         getCategory();
     });
 
-    const getResults = (spec, city) => {
-        db.collection("wets").get().then((documentSnapshot) => {
-            let array = [];
+    const getResults = (spec, city, cat) => {
+        db.collection("wets")
+            .where('Category', 'array-contains', cat)
+            .where('Verified', '==', true)
+            .where('City', '==', city)
+            .get().then((documentSnapshot) => {
+            const array = [];
             documentSnapshot.forEach((doc) => {
-                if(spec.some((e) => doc.data().Specialization.includes(e)) && city.includes(doc.data().City) && doc.data().Category.includes(category)) {
+                if(spec.some((e) => doc.data().Specialization.includes(e))) {
                     array.push(doc.data());
                 }
-            });
-            setResults(array);
+            })
+            array.length === 0 ? setMessage('Brak wyników wyszukiwania :(') : console.log('pobrano') ;
+            setResults(array)
         })
     }
 
-    const addSpecialization = (e) => {
+    const getSpecialization = (e) => {
         if(e.length > 1) {
             const [{name: first}, {name: second}] = e;
             setSpecialization([first, second]);
-        } else {
+        } else if (e.length === 1 ){
             const [{name: one}] = e;
             setSpecialization([one]);
-        }
-    }
-
-    const removeSpecialization = (e) => {
-        if(e.length < 1) {
-            setSpecialization([]);
         } else {
-            const [{name: remove}] = e;
-            setSpecialization([remove]);
+            setSpecialization([]);
         }
     }
 
@@ -109,17 +109,17 @@ export const SearchSite = ( {match} ) => {
                     <hr/>
                     <div className='filters'>
                             <Multiselect 
-                                closeOnSelect={false} 
                                 options={specializations} 
                                 placeholder='Wybierz specjalizację' 
                                 selectionLimit={2} 
                                 closeIcon='circle' 
                                 displayValue="name"
-                                emptyRecordMsg="Nie"
-                                onSelect={addSpecialization}
-                                onRemove={removeSpecialization}
+                                hidePlaceholder={true}
+                                emptyRecordMsg="Brak opcji."
+                                onSelect={getSpecialization}
+                                onRemove={getSpecialization}
                                 style={{
-                                    multiselectContainer: {width:'30rem', fontWeight: 400},
+                                    multiselectContainer: { fontWeight: 400},
                                     chips: { background: '#54a058'}, 
                                     searchBox: { background: '#ffffffe5', fontWeight: 600, height:'2.2rem', cursor: 'text'},
                                 }}
@@ -127,8 +127,7 @@ export const SearchSite = ( {match} ) => {
                             />
 
                             <PlacesSearch currentSelection={(e) => setCity(e)} />
-
-                            <button className='search--button' onClick={()=>getResults(specialization, city)}>
+                            <button className='search--button' onClick={()=>getResults(specialization, city, category)}>
                                 <FontAwesomeIcon icon={faSearch}/><span>Szukaj</span>
                             </button>
                     </div>
@@ -136,7 +135,7 @@ export const SearchSite = ( {match} ) => {
                     <hr/>
 
                     <div className='result--list'>
-                        {results.length !== 0 ? (
+                        {results.length !== 0 ? 
                             results.map((e) => {
                             return (
                                 <div className='wet--widget' key={e.Name}>
@@ -152,13 +151,16 @@ export const SearchSite = ( {match} ) => {
                                             )}
                                         </p>
                                         <hr />
-                                        <p><FontAwesomeIcon icon={faPaw}/> {e.Category.length > 1 ? e.Category.join(', ') : e.Category}</p>
-                                        <p><FontAwesomeIcon icon={faUserMd}/> {e.Specialization.length > 1 ? e.Specialization.join(', ') : e.Specialization}</p>
-                                        <p><FontAwesomeIcon icon={faMapMarkerAlt}/> {e.Address}, {e.City}</p>
+                                        <span>
+                                            <p><FontAwesomeIcon icon={faPaw}/> {e.Category.length > 1 ? e.Category.join(', ') : e.Category}</p>
+                                            <p><FontAwesomeIcon icon={faUserMd}/> {e.Specialization.length > 1 ? e.Specialization.join(', ') : e.Specialization}</p>
+                                            <p><FontAwesomeIcon icon={faMapMarkerAlt}/> {e.Address}, {e.City}</p>
+                                            <p><FontAwesomeIcon icon={faPhone}/> {e.Phone}</p>
+                                        </span>
                                     </div>
                                 </div>
-                            );})
-                            ) : <h1 className='result--message'>Wybierz specjalizację weterynarza oraz miasto</h1>}
+                            )})
+                             : <h1 className='result--message'>{message}</h1>}
                     </div>
                 </section>
                 <Footer />

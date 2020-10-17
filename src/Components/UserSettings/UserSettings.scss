@@ -1,0 +1,278 @@
+.settings--container, .vet--profile--container, .endMsg {
+    width: 80%;
+    background-color: #348aa79d;
+    border-radius: 2rem;
+    margin: 2rem auto;
+
+    .error {
+        display: block;
+        font-weight: 400;
+        font-size: 0.8rem;
+        background: #e93d3dc4;
+        line-height: 1.2rem;
+        padding: 0 1rem;
+        color: #ffffff;
+        border-radius: 0 0 1rem 1rem;
+        position: absolute;
+    }
+
+    input[type="submit"] {
+        border: none;
+        border-radius: 2rem;
+        padding: 1rem 3rem;
+        width: 10rem;
+        margin: 0 auto;
+
+        
+        color: #ffffff81;
+        background-color: #525174;
+        transition: background-color 0.3s, color 0.5s;
+
+        font-size: 1rem;
+        font-weight: 600;
+    
+        &:focus {
+            outline: none;
+        }
+        
+        &:hover {
+            background-color: #513B56;
+            color: #ffffffe5;
+            cursor: pointer;
+        }
+    }
+}
+
+.settings--container {
+    padding: 2rem 4rem;
+    width: 80%;
+
+    .form--container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2.2rem;
+
+        .PlacesSearch--container {
+            margin: 1.5rem 0;
+        }
+    }
+
+    h3 {
+        font-size: 2rem;
+        color: #ffffffe5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        color: #ffffff;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #ffffff;
+    }
+
+    hr {
+        width: 30%;
+        height: 1px;
+        background-color: #ffffff;
+        margin: 1rem 0;
+        border: none;
+    }
+
+    p {
+        margin-bottom: 0.3rem;
+        color: #ffffff;
+    }
+}
+
+.endMsg, .settings--container {
+    height: 27rem;
+}
+
+
+.vet--profile--container {
+    height: 60rem;
+    padding: 4rem;
+    background-image: url('https://image.freepik.com/free-photo/young-female-veterinarian-carrying-dog-clinic_23-2147928595.jpg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 40rem 0;
+
+    #multiselectContainerReact { 
+        width: 30rem;
+        // div {
+        //     width: 10rem;
+        // }
+    }
+
+    hr {
+        width: 30%;
+        height: 1px;
+        background-color: #ffffff;
+        margin: 1rem 0;
+        border: none;
+    }
+
+    form {
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 8rem 1rem;
+        margin: 0 30rem 0 0;
+        border-radius: 2px;
+    }
+
+    p {
+        margin-bottom: 0.3rem;
+        color: #ffffff;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #ffffff;
+    }
+}
+
+
+
+
+@media (max-width: 576px) {
+    .settings--container, .vet--profile--container, .endMsg {
+        width: 80%;
+        background-color: #348aa79d;
+        border-radius: 2rem;
+        margin: 2rem auto;
+    
+        .error {
+            display: block;
+            font-weight: 400;
+            font-size: 0.8rem;
+            background: #e93d3dc4;
+            line-height: 1.2rem;
+            padding: 0 1rem;
+            color: #ffffff;
+            border-radius: 0 0 1rem 1rem;
+            position: absolute;
+        }
+    
+        input[type="submit"] {
+            border: none;
+            border-radius: 2rem;
+            padding: 1rem 3rem;
+            width: 10rem;
+            margin: 0 auto;
+    
+            
+            color: #ffffff81;
+            background-color: #525174;
+            transition: background-color 0.3s, color 0.5s;
+    
+            font-size: 1rem;
+            font-weight: 600;
+        
+            &:focus {
+                outline: none;
+            }
+            
+            &:hover {
+                background-color: #513B56;
+                color: #ffffffe5;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    .settings--container {
+        padding: 2rem 2rem;
+        height: 50rem;
+        width: 90%;
+    
+        .form--container {
+            height: 37rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+    
+            .PlacesSearch--container {
+                width: 15rem;
+                margin: 1rem 0;
+
+                div { 
+                    height: 2.5rem;
+                    input {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    
+    
+        h2 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 0;
+        }
+    
+        h1 {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+    }
+    
+    
+    .vet--profile--container {
+        height: 80rem;
+        padding: 4rem;
+        background-image: none;
+        text-align: center;
+        justify-content: space-around;
+
+        #multiselectContainerReact { 
+            width: 15rem;
+            div {
+                width: 15rem;
+            }
+        }
+
+        .PlacesSearch--container {
+            width: 15rem;
+            margin: 0;
+        }
+    
+        hr {
+            width: 70%;
+        }
+    
+        form {
+            height: 100%;
+            padding: 1rem;
+            margin: 0;
+        }
+    
+        p {
+            margin-bottom: 0.3rem;
+            color: #ffffff;
+        }
+    
+        h1 {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+    }
+    
+}

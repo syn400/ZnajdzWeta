@@ -93,3 +93,37 @@
         }
     }
 }
+
+
+@media (max-width: 576px) { 
+    .Banner--overwrite {
+        .banner {
+            height: 30vh;
+        }
+        .user {
+            display: none;
+        }
+    }
+
+    .register--container {
+        height: 100%;
+        width: 70%;
+        margin: 1rem auto;
+
+        form {
+            font-size: 0.8rem;
+            padding: 1rem 1rem 1rem;
+            max-width: 90%;
+
+            input[type="submit"] {
+                padding: 1rem 1rem;
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+
+        .home--button {
+            font-size: 1.4rem;
+        }
+    }
+}

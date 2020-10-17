@@ -82,3 +82,35 @@
     }
 
 }
+
+@media (max-width: 576px) { 
+    .login--window {
+        width: calc(100% - 2rem);
+        height: 25rem;
+        background-color:#ffffff;
+        border-radius: 3rem;
+    
+        .login--container {
+            button {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+    
+            input {
+                font-size: 1.3rem;
+                padding: 1rem;
+                background: #ebebeb;
+            }
+    
+        }
+    
+        p {
+            font-size: 1.1rem;
+        }
+    
+        .login--error {
+            top: 2%;
+        }
+    
+    }
+}

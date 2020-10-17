@@ -14,6 +14,8 @@ export const RegisterSite = ({history}) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [messageVisible, setMessageVisible] = useState(false);
+
 
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
@@ -21,8 +23,14 @@ export const RegisterSite = ({history}) => {
         try {
           await app
             .auth()
-            .createUserWithEmailAndPassword(email.value, password.value);
-          history.push("/");
+            .createUserWithEmailAndPassword(email.value, password.value)
+            setMessageVisible(true);
+            const timeout = setTimeout(() => {
+                history.push("/")
+                }, 5000);
+                return () => {
+                    clearTimeout(timeout)
+                }
         } catch {
           setEmailError('Ten adres e-mail został już użyty.')
         }
@@ -62,6 +70,16 @@ export const RegisterSite = ({history}) => {
         }
       }
 
+      const Message = () => {
+        return (
+            <div className='message'>
+                <h2>Twoje konto zostało zarejestrowane!</h2>
+                <p>Zarejestrowałeś konto dla {email}</p>
+                <span>Za chwilę zostaniesz przekierowana/y na stronę główną</span>
+            </div>
+        )
+    }
+
     return (
         <>
         <div className='Banner--overwrite'>
@@ -69,8 +87,9 @@ export const RegisterSite = ({history}) => {
         </div>
 
         <section className='register--container'>
+            {messageVisible ? <Message /> : null}
 
-            <form onSubmit={handleSignUp}>
+            <form onSubmit={handleSignUp} style={{display: messageVisible ? 'none' : 'block'}}>
                 <h2>Rejestracja</h2>
                 <p>
                     <input onChange={(e)=> setEmail(e.target.value)} id="email" name="email" type="text" placeholder='Twój e-mail'/>
@@ -89,7 +108,7 @@ export const RegisterSite = ({history}) => {
                 </p>
             </form>
 
-            <Link to='/' className='home--button'>
+            <Link to='/' className='home--button' style={{display: messageVisible ? 'none' : 'block'}}>
                 <h2>Powrót na stronę główną</h2>
             </Link>
 

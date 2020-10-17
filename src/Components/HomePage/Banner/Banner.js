@@ -1,17 +1,26 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Banner.scss';
+import { AuthContext } from "../../../Auth.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { LoginWindow } from '../../LoginWindow/LoginWindow';
 
 import { PrivateRoute } from '../../PrivateRoute';
 import { UserPanel } from '../../UserPanel/UserPanel';
-import { AuthContext } from "../../../Auth.js";
+
+import firebase from 'firebase/app';
+const db = firebase.firestore();
 
 export const Banner = () => {
     const [loginVisible, setLoginVisible] = useState(false);
-
+    const [users, setUsers] = useState(0);
     const { currentUser } = useContext(AuthContext);
+
+    useEffect(()=> {
+        db.collection('wets').get().then(snap => {
+        setUsers(snap.size);
+     });
+    }, [])
 
     const isLoggedIn = () => {
 
@@ -34,7 +43,7 @@ export const Banner = () => {
         <header className='banner'>
             <div className='title--box'>
                 <h1 className='title'>ZnajdźWeta</h1>
-                <p>Zaufało nam już { 0 } weterynarzy z całej Polski!</p> {/*(tu będzie liczba zarejestrowanych uytkowników)*/}
+                <p>Zaufało nam już {users} weterynarzy z całej Polski!</p> {/*(tu będzie liczba zarejestrowanych uytkowników)*/}
             </div>
             
             <div className='user'>

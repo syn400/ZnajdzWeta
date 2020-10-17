@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from "../../../Auth.js";
 import './Info.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -6,22 +7,31 @@ import { faFacebookSquare, faInstagramSquare, faTwitterSquare } from '@fortaweso
 import { Link } from 'react-router-dom';
 
 export const Info = () => {
+    const { currentUser } = useContext(AuthContext);
+
     return (
         <section className='contact'>
             <div>
                 <div className='register' data-aos='zoom-out'>
                     <h2>Jesteś weterynarzem?</h2>
                     <p>Na co czekasz? Załóż swój profil!</p>
-                    <Link to='/rejestracja' style={{textDecoration: 'none'}}>
-                        <button>Zarejestruj się</button>
-                    </Link>
+                    {currentUser ? (
+                            <Link to='/ustawienia/utworz-profil' style={{textDecoration: 'none'}}>
+                                <button>Stwórz profil</button>
+                            </Link>
+                        ) : (
+                            <Link to='/rejestracja' style={{textDecoration: 'none'}}>
+                                <button>Zarejestruj się</button>
+                            </Link>
+                        )
+                    }
                 </div>
 
-                <div className='info--container'  data-aos='fade-left'>
+                <div className='info--container'  data-aos='fade-out'>
                     <div>
                         <h2>Kontakt</h2>
-                        <p><span><FontAwesomeIcon icon={faPhone}/></span> 755 555 557</p>
                         <p><span><FontAwesomeIcon icon={faEnvelope}/></span> reply@znajdzweta.pl</p>
+                        <p><span><FontAwesomeIcon icon={faPhone}/></span> 755 555 557</p>
                     </div>
 
                     <div>

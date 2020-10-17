@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import app from './fire';
 
-export const AuthContext = React.createContext();
 
 export const AuthProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
@@ -19,3 +18,5 @@ export const AuthProvider = ({children}) => {
         </AuthContext.Provider>
     );
 }
+
+export const AuthContext = React.createContext();
