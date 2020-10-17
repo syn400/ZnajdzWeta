@@ -96,3 +96,51 @@
     }
 
 }
+
+@media (max-width: 576px) {
+    .about {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 135vh;
+    
+        &::after {
+            content: '';
+            width: 100%;
+            height: 135vh;
+            background-size: 420%;
+            background-position: -27rem -23rem;
+        }
+    
+        h2 {
+            font-weight: 400;
+            font-size: 3rem;
+    
+            margin-bottom: 0;
+        }
+    
+        hr {
+            margin: 1rem 0;
+            width: 70%;
+            height: 2px;
+            background-color: #ffffffe5;
+            border: none;
+        }
+    
+        & > div {
+            width: 85%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    
+        & div.comments {
+            width: 85%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    
+    }
+}

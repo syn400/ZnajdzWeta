@@ -33,7 +33,7 @@ export const LoginWindow = ({history}) => {
                 <input type="password" placeholder="Hasło" name="password" required />
                 <span className='login--error'>{passwordError}</span>
 
-                <button type="submit" className="btn">Login</button>
+                <button type="submit" className="btn">Zaloguj</button>
             </form>
             <div>
               <Link to='/odzyskiwanie-hasla' style={{textDecoration: 'none', color: '#1f4b88'}}>

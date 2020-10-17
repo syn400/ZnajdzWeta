@@ -84,3 +84,43 @@
         }
     }
 }
+
+@media (max-width: 576px) { 
+    .banner {
+        height: 25vh;
+    
+        .user {
+            & > button {
+                padding: 0.5rem 0.8rem;
+                
+                p {
+                font-size: 1.2rem;
+                }
+    
+                h3 {
+                    font-size: 1rem;
+                }
+
+            }
+        }
+    
+    
+        &::after {
+            background-position: -3rem -5rem;
+            background-size: 130%;
+        }
+    
+    
+        div.title--box {
+            font-size: 1.4rem;
+            width: 100%;
+    
+            h1 {
+                color: #ffffffb7;
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
+        }
+    }
+    
+}

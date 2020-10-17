@@ -11,7 +11,7 @@ export const About = () => {
     }, []);
     return (
         <section className='about'>
-            <div className='about--us' data-aos='fade-right'>
+            <div className='about--us' data-aos='zoom-in'>
                 <h2>O nas</h2>
                 <hr />
                 <p>
@@ -23,7 +23,7 @@ export const About = () => {
                 </p>
             </div>
 
-            <div className='comments' data-aos='fade-left'>
+            <div className='comments' data-aos='zoom-in'>
                 <h2>Opinie</h2>
                 <hr />
 
@@ -57,7 +57,6 @@ export const About = () => {
                             </span>
                         </div>
                     </div>
-                    {/* <FontAwesomeIcon icon={faUser}/> */}
                 </div>
             </div>
         </section>

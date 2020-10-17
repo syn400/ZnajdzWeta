@@ -14,3 +14,11 @@
         background-color: #ffffff9f;
     }
 }
+
+@media (max-width: 576px) { 
+    .nav--overwrite {
+        .login--window {
+            background-color:#ffffff;
+        }
+    }
+}

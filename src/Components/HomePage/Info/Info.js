@@ -27,11 +27,11 @@ export const Info = () => {
                     }
                 </div>
 
-                <div className='info--container'  data-aos='fade-left'>
+                <div className='info--container'  data-aos='fade-out'>
                     <div>
                         <h2>Kontakt</h2>
-                        <p><span><FontAwesomeIcon icon={faPhone}/></span> 755 555 557</p>
                         <p><span><FontAwesomeIcon icon={faEnvelope}/></span> reply@znajdzweta.pl</p>
+                        <p><span><FontAwesomeIcon icon={faPhone}/></span> 755 555 557</p>
                     </div>
 
                     <div>

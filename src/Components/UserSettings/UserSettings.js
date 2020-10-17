@@ -12,6 +12,8 @@ import '@firebase/firestore';
 import '@firebase/storage';
 
 import firebase from 'firebase/app';
+import app from '../../fire';
+import { Redirect } from 'react-router-dom';
 const db = firebase.firestore();
 
 
@@ -19,15 +21,32 @@ export const UserSettings = ({match}) => {
     let { currentUser } = useContext(AuthContext);
 
     useEffect(() => {
-        if(currentUser !== null) {
+            if(currentUser !== null) {
             db.collection("wets").doc(currentUser.uid).get()
                 .then((docSnapshot) => {
                 if (docSnapshot.exists) {
-                    setEndMessage(true)
+                    setEndMessage(false)
                 }});
-    }}, [])
+            }
+    }, [])
 
     const result = match.params.profil;
+
+    const [successfullMsg, setSuccessfullMsg] = useState('');
+    const [isMsgVisible, setIsMsgVisible] = useState(false)
+
+    const [email, setEmail] = useState('');
+    const [confirmEmail, setConfirmEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
+    const [userProvidedPassword, setUserProvidedPassword] = useState('');
+
+    const [emailErr, setEmailErr] = useState('');
+    const [confirmEmailErr, setConfirmEmailErr] = useState('');
+    const [passErr, setPassErr] = useState('');
+    const [confirmPassErr, setConfirmPassErr] = useState('');
+    const [userProvidedPasswordErr, setUserProvidedPasswordErr] = useState('');
+    const [userEmailPasswordErr, setUserEmailPasswordErr] = useState('');
 
     const [endMessage, setEndMessage] = useState(false);
 
@@ -168,11 +187,120 @@ export const UserSettings = ({match}) => {
         setCategory(getValues);
     }
 
-    const EndMsg = () => {
+    const EndMsg = (ev) => {
         return (
             <div className='message'>
                     <h2>Twój profil został wysłany do weryfikacji!</h2>
                     <p>Gdy tylko nasz zespół zweryfikuje twój profil, powiadomimy cię o tym!</p>
+            </div>
+        )
+    }
+
+    const newEmail = (ev) => {
+        console.log(currentUser.email, email)
+        const re = /\S+@\S+\.\S+/;
+        if (email === '') {
+            ev.preventDefault();
+            setEmailErr('Musisz wpisać nowy adres e-mail!');
+        } else if (re.test(email) !== true) {
+            ev.preventDefault();
+            setEmailErr('Adres e-mail niepoprawny!');
+        } else if (currentUser.email.toLowerCase() === email){
+            ev.preventDefault();
+            setEmailErr('Podałeś aktualny adres e-mail');
+        } else if (email !== confirmEmail) {
+            ev.preventDefault();
+            setEmailErr('Adresy email nie są identyczne');
+            setConfirmEmailErr('Adresy email nie są identyczne');
+        } else {
+            setEmailErr('');
+            setConfirmEmailErr('');
+        }
+        ev.preventDefault();
+        const setNewEmail = async function () {
+            const usr = firebase.auth().currentUser;
+            const credential = firebase.auth.EmailAuthProvider.credential(
+                usr.email, 
+                userProvidedPassword
+            );
+            try {
+                await app
+                .auth().currentUser.reauthenticateWithCredential(credential)
+                .then(() => {
+                    setSuccessfullMsg('Twój adres email został zmieniony!');
+                    firebase.auth().currentUser.updateEmail(email);
+                    setIsMsgVisible(true);
+                    const timeout = setTimeout(() => {
+                        setSuccessfullMsg(<Redirect to='/'/>);
+                        }, 2000);
+                        return () => {
+                            clearTimeout(timeout)
+                        }
+                })
+                .catch(error => {
+                    console.log(error);
+                    setUserEmailPasswordErr('Błędne hasło!')
+                }
+                );
+            } catch(error) {
+                console.log(error)
+            }
+        }
+        setNewEmail();
+    }
+
+    const newPassword = (ev) => {
+        if (password === '') {
+            ev.preventDefault();
+            setPassErr('Musisz wpisać nowe hasło!');
+        } else if (currentUser.password === password){
+            ev.preventDefault();
+            setPassErr('Wpisałeś aktualne hasło');
+        } else if (password !== confirmPass) {
+            ev.preventDefault();
+            setPassErr('Hasła nie są identyczne');
+            setConfirmPassErr('Hasła nie są identyczne');
+        } else {
+            setPassErr('');
+            setConfirmPassErr('');
+            }
+            ev.preventDefault();
+            const setNewPass = async function () {
+                const usr = firebase.auth().currentUser;
+                const credential = firebase.auth.EmailAuthProvider.credential(
+                    usr.email, 
+                    userProvidedPassword
+                );
+                try {
+                    await app
+                    .auth().currentUser.reauthenticateWithCredential(credential)
+                    .then(() => {
+                        setSuccessfullMsg('Twoje hasło zostało zmienione!');
+                        firebase.auth().currentUser.updatePassword(password);
+                        setIsMsgVisible(true);
+                        const timeout = setTimeout(() => {
+                            setSuccessfullMsg(<Redirect to='/'/>);
+                            }, 3000);
+                            return () => {
+                                clearTimeout(timeout)
+                            }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        setUserProvidedPasswordErr('Błędne hasło!');
+                    }
+                    );
+                } catch(error) {
+                    console.log(error)
+                }
+            }
+            setNewPass();
+    }
+
+    const Msg = () => {
+        return (
+            <div className='settings--container'>
+                <h3>{successfullMsg}</h3>
             </div>
         )
     }
@@ -226,7 +354,7 @@ export const UserSettings = ({match}) => {
                                     onSelect={getCategory}
                                     onRemove={getCategory}
                                     style={{
-                                        multiselectContainer: {width:'30rem', fontWeight: 400},
+                                        multiselectContainer: {fontWeight: 400},
                                         chips: { background: '#54a058'}, 
                                         searchBox: { background: '#ffffffe5', fontWeight: 600, height:'2.2rem', cursor: 'text'},
                                     }}
@@ -247,7 +375,7 @@ export const UserSettings = ({match}) => {
                                         onSelect={getSpecializations}
                                         onRemove={getSpecializations}
                                         style={{
-                                            multiselectContainer: {width:'30rem', fontWeight: 400},
+                                            multiselectContainer: {fontWeight: 400},
                                             chips: { background: '#54a058'}, 
                                             searchBox: { background: '#ffffffe5', fontWeight: 600, height:'2.2rem', cursor: 'text'},
                                         }}
@@ -286,20 +414,75 @@ export const UserSettings = ({match}) => {
             </>
         )
     } else if(result === 'profil') {
-        console.log()
         return (
-                <>
-            <div className='NavBar--overwrite'>
-                <NavBar />
-            </div>
+            <>
+                <div className='NavBar--overwrite' >
+                    <NavBar />
+                </div>
 
-            <section className='settings--container'>
-                <h1>Ustawienia konta</h1>
-            </section>
+                {isMsgVisible ? <Msg /> : null}
 
-            <Footer />
-        </>
-    )
+                <section className='settings--container' style={{display: isMsgVisible ? 'none' : null}}>
+                    <h1>Ustawienia konta - {currentUser.email}</h1>
+                    <hr />
+                    
+                    <div className='form--container'>
+                        <form onSubmit={newPassword}>
+                            <h2>Zmiana hasła</h2>
+                            <div className="PlacesSearch--container">
+                                <div className='input--container'>
+                                    <input onChange={(e)=> setPassword(e.target.value)} className='text--input' id="password" name="password" type="password" placeholder='Nowe hasło'/>
+                                </div>
+                                <span className='error'>{passErr}</span>
+                            </div>
+
+                            <div className="PlacesSearch--container">
+                                <div className='input--container'>
+                                    <input onChange={(e)=> setConfirmPass(e.target.value)} className='text--input' id="check--password" name="check--password" type="password" placeholder='Powtórz nowe hasło'/>
+                                </div>
+                                <span className='error'>{confirmPassErr}</span>
+                            </div>
+
+                            <div className="PlacesSearch--container">
+                                <div className='input--container'>
+                                    <input onChange={(e)=> setUserProvidedPassword(e.target.value)} className='text--input' name="check-user--password" type="password" placeholder='Wpisz aktualne hasło do konta'/>
+                                </div>
+                                <span className='error'>{userProvidedPasswordErr}</span>
+                            </div>
+                            <input type="submit" value="Wyślij" id="submit--password"/>
+                        </form>
+
+                        <form onSubmit={newEmail}>
+                            <h2>Zmiana e-maila</h2>
+                            <div className="PlacesSearch--container">
+                                <div className='input--container'>
+                                    <input onChange={(e)=> setEmail(e.target.value.toLowerCase())} className='text--input' id="email" name="email" type="email" placeholder='Nowy e-mail'/>
+                                </div>
+                                <span className='error'>{emailErr}</span>
+                            </div>
+
+                            <div className="PlacesSearch--container">
+                                <div className='input--container'>
+                                    <input onChange={(e)=> setConfirmEmail(e.target.value.toLowerCase())} className='text--input' id="check-email" name="check-email" type="email" placeholder='Powtórz nowy e-mail'/>
+                                </div>
+                                <span className='error'>{confirmEmailErr}</span>
+                            </div>
+
+                            <div className="PlacesSearch--container">
+                                <div className='input--container'>
+                                    <input onChange={(e)=> setUserProvidedPassword(e.target.value)} className='text--input' name="check-user--password" type="password" placeholder='Wpisz aktualne hasło do konta'/>
+                                </div>
+                                <span className='error'>{userEmailPasswordErr}</span>
+                            </div>
+
+                            <input type="submit" value="Wyślij" id="submit--email"/>
+                        </form>
+                    </div>
+                </section>
+
+                <Footer />
+            </>
+        )
     } else {
         return <NotFound />
     }
