@@ -21,6 +21,10 @@ time, mark, audio, video {
 	-webkit-tap-highlight-color: transparent;
 }
 
+input:active {
+	outline: none !important;
+}
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;

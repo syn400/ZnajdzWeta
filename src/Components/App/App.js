@@ -12,8 +12,7 @@ import { ForgotPasswordSite } from '../ForgotPasswordSite/ForgotPasswordSite';
 import { UserSettings } from '../UserSettings/UserSettings';
 import { PrivateRoute } from '../PrivateRoute';
 
-
-function App(props) {
+function App() {
   return (
     <AuthProvider>
       <Router>

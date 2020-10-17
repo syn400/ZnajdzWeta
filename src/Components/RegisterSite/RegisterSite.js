@@ -27,7 +27,7 @@ export const RegisterSite = ({history}) => {
             setMessageVisible(true);
             const timeout = setTimeout(() => {
                 history.push("/")
-                }, 5000);
+                }, 3000);
                 return () => {
                     clearTimeout(timeout)
                 }

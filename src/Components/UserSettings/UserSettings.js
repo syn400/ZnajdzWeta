@@ -1,4 +1,4 @@
-import React , {useState, useContext, useEffect} from 'react';
+import React , {useState, useContext} from 'react';
 import { AuthContext } from "../../Auth";
 
 import { NotFound } from '../NotFound/NotFound';
@@ -10,29 +10,22 @@ import { PlacesSearch } from '../PlacesSearch/PlacesSearch';
 
 import '@firebase/firestore';
 import '@firebase/storage';
+import { animations } from 'react-animation';
 
 import firebase from 'firebase/app';
 import app from '../../fire';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 const db = firebase.firestore();
 
 
 export const UserSettings = ({match}) => {
     let { currentUser } = useContext(AuthContext);
 
-    useEffect(() => {
-            if(currentUser !== null) {
-            db.collection("wets").doc(currentUser.uid).get()
-                .then((docSnapshot) => {
-                if (docSnapshot.exists) {
-                    setEndMessage(false)
-                }});
-            }
-    }, [])
+    let isWetDataExists = JSON.parse(localStorage.getItem('userWetProfileExists'));
 
     const result = match.params.profil;
 
-    const [successfullMsg, setSuccessfullMsg] = useState('');
+    const [successfullMsg, setSuccessfullMsg] = useState('gggx');
     const [isMsgVisible, setIsMsgVisible] = useState(false)
 
     const [email, setEmail] = useState('');
@@ -48,7 +41,7 @@ export const UserSettings = ({match}) => {
     const [userProvidedPasswordErr, setUserProvidedPasswordErr] = useState('');
     const [userEmailPasswordErr, setUserEmailPasswordErr] = useState('');
 
-    const [endMessage, setEndMessage] = useState(false);
+    const [endMessage, setEndMessage] = useState(isWetDataExists);
 
     const [name, setName] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
@@ -189,9 +182,10 @@ export const UserSettings = ({match}) => {
 
     const EndMsg = (ev) => {
         return (
-            <div className='message'>
+            <div className='message' style={{ animation: animations.popIn}}>
                     <h2>Twój profil został wysłany do weryfikacji!</h2>
                     <p>Gdy tylko nasz zespół zweryfikuje twój profil, powiadomimy cię o tym!</p>
+                    <Link to='/' style={{textDecoration: 'none'}}><span className='btn'>Powrót na stronę główną</span></Link>
             </div>
         )
     }
@@ -231,7 +225,7 @@ export const UserSettings = ({match}) => {
                     firebase.auth().currentUser.updateEmail(email);
                     setIsMsgVisible(true);
                     const timeout = setTimeout(() => {
-                        setSuccessfullMsg(<Redirect to='/'/>);
+                        setSuccessfullMsg(<Redirect to='/'/>)
                         }, 2000);
                         return () => {
                             clearTimeout(timeout)
@@ -280,7 +274,7 @@ export const UserSettings = ({match}) => {
                         setIsMsgVisible(true);
                         const timeout = setTimeout(() => {
                             setSuccessfullMsg(<Redirect to='/'/>);
-                            }, 3000);
+                            }, 2000);
                             return () => {
                                 clearTimeout(timeout)
                             }
@@ -299,7 +293,7 @@ export const UserSettings = ({match}) => {
 
     const Msg = () => {
         return (
-            <div className='settings--container'>
+            <div className='message--container settings--container' style={{ animation: animations.popIn}}>
                 <h3>{successfullMsg}</h3>
             </div>
         )
@@ -314,7 +308,7 @@ export const UserSettings = ({match}) => {
 
                 {endMessage ? <EndMsg /> : null}
 
-                <section className='vet--profile--container' style={{display: endMessage ? 'none' : 'block'}}>
+                <section className='vet--profile--container' style={{display: endMessage ? 'none' : 'block', animation: animations.popIn}}>
                     <h1>Tworzenie profilu weterynarza</h1>
                     <hr />
                     <form onSubmit={formValidate} >
@@ -422,7 +416,7 @@ export const UserSettings = ({match}) => {
 
                 {isMsgVisible ? <Msg /> : null}
 
-                <section className='settings--container' style={{display: isMsgVisible ? 'none' : null}}>
+                <section className='settings--container' style={{ animation: animations.popIn, display: isMsgVisible ? 'none' : 'block'}}>
                     <h1>Ustawienia konta - {currentUser.email}</h1>
                     <hr />
                     
