@@ -25,7 +25,7 @@ export const UserSettings = ({match}) => {
 
     const result = match.params.profil;
 
-    const [successfullMsg, setSuccessfullMsg] = useState('gggx');
+    const [successfullMsg, setSuccessfullMsg] = useState('');
     const [isMsgVisible, setIsMsgVisible] = useState(false)
 
     const [email, setEmail] = useState('');
@@ -81,11 +81,11 @@ export const UserSettings = ({match}) => {
 
     const addUserImage = async (file, event) => {
         event.preventDefault();
-        setEndMessage(true)
         if(currentUser !== null) {
             return await firebase.storage().ref(`userImages/${file.name}`).put(file)
                 .then(e => e.ref.getDownloadURL())
                 .then(v => {
+                    setEndMessage(true)
                     return {
                         Name: name,
                         Phone: phoneNum,
@@ -117,6 +117,8 @@ export const UserSettings = ({match}) => {
         if (phoneNum === '') {
             ev.preventDefault();
             setPhoneErr('Numer telefonu jest wymagany!');
+        } else if(phoneNum.length !== 9) {
+            setPhoneErr('Numer telefonu jest niepoprawny!');
         } else {
             setPhoneErr('');
         }
@@ -323,7 +325,7 @@ export const UserSettings = ({match}) => {
                         <div className="PlacesSearch--container">
                             <p>Telefon kontaktowy</p>
                             <div className='input--container'>
-                                <input className='text--input' onChange={(e)=> setPhoneNum(e.target.value)} id="fullName" name="fullName" type="number" placeholder='Numer telefonu'/>
+                                <input className='text--input' onChange={(e)=> setPhoneNum(e.target.value)} id="fullName" name="fullName" type="text" maxlength="9" placeholder='Numer telefonu'/>
                             </div>
                             <span className='error'>{phoneErr}</span>
                         </div>
