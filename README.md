@@ -12,7 +12,9 @@ Aplikacja webowa napisana w ReactJs służąca do szukania weterynarzy z całej 
 
 ## Demo strony: https://znajdzweta.netlify.app
 
-
-
+## Zdjęcia strony:
+![main-page1](src/images/main-page01.png)
+![main-page2](src/images/main-page02.png)
+![search-page1](src/images/search-site01.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
