@@ -59,6 +59,7 @@ export const SearchSite = ( {match} ) => {
     });
 
     const getResults = (spec, city, cat) => {
+        setMessage('Wyszukiwanie...')
         db.collection("wets")
             .where('Category', 'array-contains', cat)
             .where('Verified', '==', true)

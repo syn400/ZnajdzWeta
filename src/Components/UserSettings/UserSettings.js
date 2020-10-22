@@ -15,6 +15,8 @@ import { animations } from 'react-animation';
 import firebase from 'firebase/app';
 import app from '../../fire';
 import { Link, Redirect } from 'react-router-dom';
+import Avatar from 'react-avatar-edit'
+
 const db = firebase.firestore();
 
 
@@ -42,6 +44,7 @@ export const UserSettings = ({match}) => {
     const [userEmailPasswordErr, setUserEmailPasswordErr] = useState('');
 
     const [endMessage, setEndMessage] = useState(isWetDataExists);
+    const [loadingScreen, setLoadingScreen] = useState(false);
 
     const [name, setName] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
@@ -81,11 +84,14 @@ export const UserSettings = ({match}) => {
 
     const addUserImage = async (file, event) => {
         event.preventDefault();
+        setLoadingScreen(true);
+        localStorage.setItem('userWetProfileExists', true);
+        setEndMessage(true);
+        
         if(currentUser !== null) {
-            return await firebase.storage().ref(`userImages/${file.name}`).put(file)
+            return await firebase.storage().ref(`userImages/${currentUser.uid}`).put(file)
                 .then(e => e.ref.getDownloadURL())
                 .then(v => {
-                    setEndMessage(true)
                     return {
                         Name: name,
                         Phone: phoneNum,
@@ -99,6 +105,8 @@ export const UserSettings = ({match}) => {
                     }
                 }).then(d => {
                     db.collection('wets').doc(currentUser.uid).set(d)
+                    }).then(()=>{
+                        setLoadingScreen(false);
                     })
                 .catch(error => console.log(error))
                 } else {
@@ -164,7 +172,17 @@ export const UserSettings = ({match}) => {
         } else {
             setAvatarErr('');
         }
-        addUserImage(image, ev);
+
+        if (name !== '' &&
+            phoneNum !== '' &&
+            school !== '' &&
+            category !== '' &&
+            specialization !== '' &&
+            city !== '' &&
+            address !== '' &&
+            image !== '') {
+                addUserImage(image, ev);
+        } 
     }
     
     
@@ -183,13 +201,21 @@ export const UserSettings = ({match}) => {
     }
 
     const EndMsg = (ev) => {
-        return (
-            <div className='message' style={{ animation: animations.popIn}}>
-                    <h2>Twój profil został wysłany do weryfikacji!</h2>
-                    <p>Gdy tylko nasz zespół zweryfikuje twój profil, powiadomimy cię o tym!</p>
-                    <Link to='/' style={{textDecoration: 'none'}}><span className='btn'>Powrót na stronę główną</span></Link>
-            </div>
-        )
+        if(loadingScreen) {
+            return (
+                <div className='message' style={{ animation: animations.popIn}}>
+                    <h2>Wysyłanie...</h2>
+                </div>
+            )
+        } else {
+            return (
+                <div className='message' style={{ animation: animations.popIn}}>
+                        <h2>Twój profil został wysłany do weryfikacji!</h2>
+                        <p>Gdy tylko nasz zespół zweryfikuje twój profil, powiadomimy cię o tym!</p>
+                        <Link to='/' style={{textDecoration: 'none'}}><span className='btn'>Powrót na stronę główną</span></Link>
+                </div>
+            )
+        }
     }
 
     const newEmail = (ev) => {
@@ -313,21 +339,44 @@ export const UserSettings = ({match}) => {
                 <section className='vet--profile--container' style={{display: endMessage ? 'none' : 'block', animation: animations.popIn}}>
                     <h1>Tworzenie profilu weterynarza</h1>
                     <hr />
-                    <form onSubmit={formValidate} >
-                        <div className="PlacesSearch--container">
-                            <p>Wpisz swoje imię i nazwisko</p>
-                            <div className='input--container'>
-                                <input className='text--input' onChange={(e)=> setName(e.target.value)} id="fullName" name="fullName" type="text" placeholder='Imię i nazwisko'/>
-                            </div>
-                            <span className='error'>{nameErr}</span>
-                        </div>
 
-                        <div className="PlacesSearch--container">
-                            <p>Telefon kontaktowy</p>
-                            <div className='input--container'>
-                                <input className='text--input' onChange={(e)=> setPhoneNum(e.target.value)} id="fullName" name="fullName" type="text" maxlength="9" placeholder='Numer telefonu'/>
+                    <form onSubmit={formValidate} >
+                        <div className='top--form' >
+                            <div className='inputs'>
+                                <div className="PlacesSearch--container">
+                                    <p>Wpisz swoje imię i nazwisko</p>
+                                    <div className='input--container'>
+                                        <input className='text--input' onChange={(e)=> setName(e.target.value)} id="fullName" name="fullName" type="text" placeholder='Imię i nazwisko'/>
+                                    </div>
+                                    <span className='error'>{nameErr}</span>
+                                </div>
+
+                                <div className="PlacesSearch--container">
+                                    <p>Telefon kontaktowy</p>
+                                    <div className='input--container'>
+                                        <input className='text--input' onChange={(e)=> setPhoneNum(e.target.value)} id="fullName" name="fullName" type="text" maxLength="9" placeholder='Numer telefonu'/>
+                                    </div>
+                                    <span className='error'>{phoneErr}</span>
+                                </div>
                             </div>
-                            <span className='error'>{phoneErr}</span>
+
+                            <div className='avatar--editor'>
+                                <Avatar
+                                    width={200}
+                                    height={200}
+                                    imageWidth={200}
+                                    label='Wybierz zdjęcie profilowe'
+                                    labelStyle={{fontWeight: 500}}
+                                    onCrop={e => {
+                                        fetch(e)
+                                        .then(e => e.blob())
+                                        .then(l => setImage(l))
+                                    }}
+                                    onClose={()=>setImage('')}
+                                    src={image}
+                                />
+                                <span className='error'>{avatarErr}</span>
+                            </div>
                         </div>
 
                         <div className="PlacesSearch--container">
@@ -393,14 +442,6 @@ export const UserSettings = ({match}) => {
                                 </div>
                                 <span className='error'>{addressErr}</span>
                             </div>
-
-                            <div className="PlacesSearch--container">
-                            <p>Wybierz zdjęcie profilowe</p>
-                                <div className='input--container'>
-                                    <input onChange={(event)=> setImage(event.target.files[0])} type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"/>
-                                </div>
-                                <span className='error'>{avatarErr}</span>
-                            </div>  
 
                             <input type="submit" value="Wyślij" id="submit"/>
                     </form>

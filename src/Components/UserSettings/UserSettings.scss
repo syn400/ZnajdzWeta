@@ -99,6 +99,24 @@
     #multiselectContainerReact { 
         width: 30rem;
     }
+    .top--form {
+        width: 30rem;
+        display: flex;
+        justify-content: space-between;
+
+        .avatar--editor:hover, .avatar--editor label:hover {
+            cursor: pointer;
+        }
+
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .PlacesSearch--container {
+            width: 15rem;
+        }
+    }
 
     hr {
         width: 30%;
