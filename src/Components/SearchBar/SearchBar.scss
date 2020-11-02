@@ -1,5 +1,5 @@
 .search--bar {
-    height: 50vh;
+    height: 28rem;
     width: 100%;
 
     display: flex;
@@ -56,11 +56,14 @@
     }
 }
 
-@media (max-width: 576px) {
+
+
+@media (max-width: 1200px) {
     .search--bar {
-        height: 75vh;
+        height: 20rem;
 
         h2 {
+            width: 90%;
             text-align: center;
             font-size: 2.3rem;
             margin-bottom: 1.5rem;
@@ -68,16 +71,80 @@
 
         div {
             justify-content: space-evenly;
-
             span {
                 text-align: center;
-                width: 12rem;
+                width: 9.5rem;
                 height: 9.5rem;
+                img {
+                    width: 7rem;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media (max-width: 950px) {
+    .search--bar {
+        div {
+            span {
+                width: 7.5rem;
+                height: 9.5rem;
+                img {
+                    width: 6rem;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 767px) {
+    .search--bar {
+        height: 28rem;
+
+        div {
+            span {
+                width: 12rem;
                 img {
                     width: 8rem;
                 }
             }
         }
     }
+}
 
+@media (max-width: 576px) {
+    .search--bar {
+        height: 40rem;
+    }
+}
+
+
+@media (max-width: 410px) {
+    .search--bar {
+        height: 25rem;
+        h2 {
+            width: 90%;
+            font-size: 1.8rem;
+        }
+
+        div {
+            span {
+                width: 6.5rem;
+                height: 7rem;
+                
+                img {
+                    width: 4rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 311px) {
+    .search--bar {
+        height: 30rem;
+    }
 }

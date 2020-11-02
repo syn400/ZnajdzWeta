@@ -12,7 +12,7 @@ export const Info = () => {
     return (
         <section className='contact'>
             <div>
-                <div className='register' data-aos='zoom-out'>
+                <div className='register' data-aos='fade-out'>
                     <h2>Jesteś weterynarzem?</h2>
                     <p>Na co czekasz? Załóż swój profil!</p>
                     {currentUser ? (

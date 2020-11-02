@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color:  #ffffff5b;
+    background-color:#ffffff;
     box-shadow: -1px 7px 20px -6px rgba(0,0,0,0.67);
 
     border-radius: 3rem;
@@ -83,9 +83,9 @@
 
 }
 
-@media (max-width: 576px) { 
+@media (max-width: 1100px) { 
     .login--window {
-        width: calc(100% - 2rem);
+        width: calc(50% - 2rem);
         height: 25rem;
         background-color:#ffffff;
         border-radius: 3rem;
@@ -112,5 +112,12 @@
             top: 2%;
         }
     
+    }
+}
+
+
+@media (max-width: 650px) { 
+    .login--window {
+        width: calc(100% - 2rem);
     }
 }

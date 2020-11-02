@@ -1,5 +1,4 @@
 import React, {useState, useContext} from 'react';
-import './NavBar.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -34,7 +33,7 @@ export const NavBar = () => {
     }
 
     return (
-        <nav className='banner nav--overwrite'>
+        <nav className='banner'>
             <div className='title--box'>
                 <Link to='/' style={{textDecoration: 'none', color: '#ffffffe5'}}>
                     <h1 className='title'>ZnajdźWeta</h1>

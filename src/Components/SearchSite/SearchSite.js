@@ -71,7 +71,9 @@ export const SearchSite = ( {match} ) => {
                     array.push(doc.data());
                 }
             })
-            if(array.length === 0) {
+            if(city === '' || spec.length === 0) {
+                setMessage('Wpisz koniecznie miasto oraz specjalizację!')
+            } else if (array.length === 0) {
                 setMessage('Brak wyników wyszukiwania :(')
             };
             setResults(array)

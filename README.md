@@ -1,4 +1,4 @@
-# ZnajdzWeta v1.1.0
+# ZnajdzWeta v1.2.0
 Aplikacja webowa napisana w ReactJs służąca do szukania weterynarzy z całej polski.
 
 
@@ -6,11 +6,11 @@ Aplikacja webowa napisana w ReactJs służąca do szukania weterynarzy z całej 
  - Możliwość założenia konta oraz wysłanie prośby o utworzenie profilu weterynarza i udostępnienie go w wyszukwiarce.
  - Możliwość zmiany hasła oraz jego przypomnienie drogą mailową.
  - Możliwość zmiany adresu e-mail oraz jego przypomienie drogą mailową.
- - Wyświetlanie strony na urządzeniach mobilnych.
+ - W pełni responsywna strona - telefony, tablety, komputery i tv.
  - Wyszukiwarka zwracająca wyniki zapytania na podstawie filtrów takich jak - Specjalizacja / Kategoria / Miasto
  - Baza danych użytkowników i ich profili FireBase.
 
-## Demo strony: https://znajdzweta.netlify.app
+## Demo strony z przykładowymi kontami (lokalizacja Wrocław): https://znajdzweta.netlify.app
 
 ## Zdjęcia strony:
 ![main-page1](src/images/main-page01.png)

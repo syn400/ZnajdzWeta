@@ -1,6 +1,10 @@
+.rangeslider-vertical .rangeslider__labels {
+    width: 0 !important;
+}
+
 .settings--container, .vet--profile--container, .endMsg {
     width: 80%;
-    background-color: #348aa79d;
+    background-color: #348ba89d;
     border-radius: 2rem;
     margin: 2rem auto;
 
@@ -21,7 +25,6 @@
         border-radius: 2rem;
         padding: 1rem 3rem;
         width: 10rem;
-        margin: 0 auto;
 
         
         color: #ffffff81;
@@ -49,12 +52,13 @@
 
     .form--container {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         margin-top: 2.2rem;
 
         .PlacesSearch--container {
             margin: 1.5rem 0;
+            width: 25rem;
         }
     }
 
@@ -89,32 +93,58 @@
 
 
 .vet--profile--container {
-    height: 60rem;
+    height: 70rem;
     padding: 4rem;
     background-image: url('https://image.freepik.com/free-photo/young-female-veterinarian-carrying-dog-clinic_23-2147928595.jpg');
-    background-size: 60%;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: 40rem 0;
 
     #multiselectContainerReact { 
         width: 30rem;
     }
-    .top--form {
+    .editor--container {
         width: 30rem;
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: space-around;
 
-        .avatar--editor:hover, .avatar--editor label:hover {
+        .profile--image--div {
+            span {
+                position: relative;
+                left: 1.3rem;
+                top: 2.1rem;
+                width: 12rem;
+                padding: 0;
+                text-align: center;
+            }
+        }
+
+        .profile--image--button {
+            background-color: #525174;
+            padding: 2rem 1.2rem;
+            color: #ffffff;
+            font-weight: 400;
+            font-size: 1.2rem;
+            border-radius: 1.2rem;
+            text-align: center;
+            transition: background-color 0.3s, color 0.5s;
             cursor: pointer;
+
+
+            &:hover {
+                background-color: #513B56;
+                color: #ffffffe5;
+                cursor: pointer;
+            }
         }
 
-        .inputs {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-        }
-        .PlacesSearch--container {
-            width: 15rem;
+        .rangeslider-vertical {
+            margin: 0;
+
+            .rangeslider__fill {
+                background-color: #525174;
+            }
         }
     }
 
@@ -128,12 +158,12 @@
 
     form {
         height: 100%;
+        width: 32rem;
         display: flex;
         justify-content: space-around;
         flex-direction: column;
         align-items: center;
-        padding: 1rem 8rem 1rem;
-        margin: 0 30rem 0 0;
+        padding: 1rem 1rem;
         border-radius: 2px;
     }
 
@@ -177,135 +207,201 @@
 
 
 
-@media (max-width: 576px) {
-    .settings--container, .vet--profile--container, .endMsg {
-        width: 80%;
-        background-color: #348aa79d;
-        border-radius: 2rem;
-        margin: 2rem auto;
+
+@media (max-width: 1350px) {
+    input, select, textarea {
+        font-size: 16px;
+      }
     
-        .error {
-            display: block;
-            font-weight: 400;
-            font-size: 0.8rem;
-            background: #e93d3dc4;
-            line-height: 1.2rem;
-            padding: 0 1rem;
-            color: #ffffff;
-            border-radius: 0 0 1rem 1rem;
-            position: absolute;
-        }
-    
-        input[type="submit"] {
-            border: none;
-            border-radius: 2rem;
-            padding: 1rem 3rem;
-            width: 10rem;
-            margin: 0 auto;
-    
-            
-            color: #ffffff81;
-            background-color: #525174;
-            transition: background-color 0.3s, color 0.5s;
-    
-            font-size: 1rem;
-            font-weight: 600;
-        
-            &:focus {
-                outline: none;
-            }
-            
-            &:hover {
-                background-color: #513B56;
-                color: #ffffffe5;
-                cursor: pointer;
+    .settings--container {
+        .form--container {
+            .PlacesSearch--container {
+                width: 30vw;
             }
         }
     }
     
-    .settings--container {
-        padding: 2rem 2rem;
-        height: 50rem;
-        width: 90%;
     
+    .vet--profile--container {
+        height: 75rem;
+        background-image: none;
+
+        #multiselectContainerReact { 
+            width: 54vw;
+            div {
+                width: 54vw;
+            }
+        }
+
+        .editor--container {
+            width: 54vw;
+            justify-content: space-between;
+        }
+
+        .PlacesSearch--container, p {
+            width: 54vw;
+        }
+    
+        form {
+            width: 100%;
+            & > span {
+                width: 54vw;
+            }
+        }
+    }
+}
+
+
+
+
+
+@media (max-width: 1000px) {
+
+    .settings--container, .vet--profile--container, .endMsg {
+        width: 90%;
+    }
+    
+    .settings--container {
+        height: 50rem;
+
         .form--container {
-            height: 37rem;
-            display: flex;
+            height: 42rem;
             flex-direction: column;
-            align-items: center;
 
             form {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: space-between;
             }
     
             .PlacesSearch--container {
-                width: 15rem;
+                width: 60vw;
                 margin: 1rem 0;
 
                 div { 
                     height: 2.5rem;
-                    input {
-                        font-size: 1rem;
-                    }
                 }
             }
         }
     
     
         h2 {
-            font-size: 1.5rem;
-            color: #ffffff;
             margin-bottom: 0;
-        }
-    
-        h1 {
-            font-size: 2rem;
-            color: #ffffff;
         }
     }
     
     
     .vet--profile--container {
-        height: 80rem;
-        padding: 4rem;
-        background-image: none;
-        text-align: center;
-        justify-content: space-around;
+        padding: 4rem 3rem;
 
         #multiselectContainerReact { 
-            width: 15rem;
+            width: 28rem;
             div {
-                width: 15rem;
+                width: 28rem;
             }
         }
 
-        .PlacesSearch--container {
-            width: 15rem;
-            margin: 0;
+        .editor--container {
+            width: 30rem;
         }
     
-        hr {
-            width: 70%;
+        form > span, .PlacesSearch--container, p {
+                width: 28rem;
+        }
+    }
+}
+
+
+
+
+@media (max-width: 576px) {
+    
+    .settings--container {
+        .form--container {
+            height: 40rem;
+        }
+    }
+    
+    
+    .vet--profile--container {
+        #multiselectContainerReact { 
+            width: 70vw;
+            div {
+                width: 70vw;
+            }
+        }
+
+        .editor--container {
+            margin-top: -7rem;
+            margin-bottom: -2rem;
+            height: 28rem;
+            width: 15rem;
+            position: relative;
+            flex-direction: column-reverse;
+            justify-content: space-around;
+    
+            .rangeslider-vertical {
+                top: 14rem;
+                position: absolute;
+                transform: rotate(90deg);
+            }
+        }
+
+        .PlacesSearch--container, p {
+            width: 70vw;
         }
     
         form {
             height: 100%;
-            padding: 1rem;
-            margin: 0;
-        }
-    
-        p {
-            margin-bottom: 0.3rem;
-            color: #ffffff;
+            padding: 3rem;
+            & > span {
+                width: 70vw;
+            }
         }
     
         h1 {
             font-size: 2rem;
-            color: #ffffff;
         }
     }
-    
+}
+
+
+
+
+@media (max-width: 416px) {
+    .settings--container {
+        h1 {
+            font-size: 1.8rem;
+        }
+    }
+    .vet--profile--container {
+        .editor--container {
+            margin-top: -5rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+        }
+        form {
+            padding: 1rem 1rem;
+        }
+    }
+}
+
+
+
+
+@media (max-width: 360px) {
+    .settings--container {
+        h1 {
+            font-size: 1.3rem;
+        }
+    }
+    .vet--profile--container {
+        h1 {
+            font-size: 1.1rem;
+        }
+        form {
+            padding: 1rem 0;
+        }
+    }
 }
