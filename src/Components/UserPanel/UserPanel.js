@@ -20,11 +20,11 @@ export const UserPanel = () => {
                 <div className='user--panel--container' style={{ animation: animations.popIn}}>
                     <h3>{email}</h3>
 
-                    <Link to='/ustawienia/utworz-profil' style={{textDecoration: 'none', color: '#1f4b88'}}>
+                    <Link onClick={()=>setIsVisible(false)} to='/ustawienia/utworz-profil' style={{textDecoration: 'none', color: '#1f4b88'}}>
                         <p>Jesteś weterynarzem? <br />Stwórz swój profil!</p>
                     </Link>
 
-                    <Link to='/ustawienia/profil' style={{textDecoration: 'none', color: '#1f4b88'}}>
+                    <Link onClick={()=>setIsVisible(false)} to='/ustawienia/profil' style={{textDecoration: 'none', color: '#1f4b88'}}>
                         <p><FontAwesomeIcon icon={faCog} /> Ustawienia konta</p>
                     </Link>
 

@@ -15,7 +15,15 @@ import { animations } from 'react-animation';
 import firebase from 'firebase/app';
 import app from '../../fire';
 import { Link, Redirect } from 'react-router-dom';
-import Avatar from 'react-avatar-edit'
+
+import AvatarEditor from 'react-avatar-editor'
+
+import Slider from 'react-rangeslider'
+import 'react-rangeslider/lib/index.css'
+
+
+
+
 
 const db = firebase.firestore();
 
@@ -26,6 +34,11 @@ export const UserSettings = ({match}) => {
     let isWetDataExists = JSON.parse(localStorage.getItem('userWetProfileExists'));
 
     const result = match.params.profil;
+
+    const [avRef, setAvRef] = useState('');
+
+    const [uploadImg, setUploadImg] = useState('');
+    const [zoom, setZoom] = useState(1.2);
 
     const [successfullMsg, setSuccessfullMsg] = useState('');
     const [isMsgVisible, setIsMsgVisible] = useState(false)
@@ -100,7 +113,7 @@ export const UserSettings = ({match}) => {
                         City: city,
                         Rating: 0,
                         Specialization: specialization,
-                        Verified: true,
+                        Verified: false,
                         Avatar: v
                     }
                 }).then(d => {
@@ -115,6 +128,7 @@ export const UserSettings = ({match}) => {
             }
             
     const formValidate = (ev) => {
+
         if (name === '') {
             ev.preventDefault();
             setNameErr('Wpisz swoje imię i nazwisko!');
@@ -166,11 +180,11 @@ export const UserSettings = ({match}) => {
             setAddressErr('');
         }
         
-        if (image === '') {
+        if (uploadImg === '') {
             ev.preventDefault();
-            setAvatarErr('Zdjęcie profilowe jest wymagane!');
+            setAvatarErr('Zdjęcie jest wymagane!');
         } else {
-            setAvatarErr('');
+            setAvatarErr(''); 
         }
 
         if (name !== '' &&
@@ -181,7 +195,7 @@ export const UserSettings = ({match}) => {
             city !== '' &&
             address !== '' &&
             image !== '') {
-                addUserImage(image, ev);
+                addUserImage(image, ev)
         } 
     }
     
@@ -330,7 +344,7 @@ export const UserSettings = ({match}) => {
     if (result === 'utworz-profil'){
         return (
             <>
-                <div className='NavBar--overwrite'>
+                <div>
                     <NavBar />
                 </div>
 
@@ -341,42 +355,62 @@ export const UserSettings = ({match}) => {
                     <hr />
 
                     <form onSubmit={formValidate} >
-                        <div className='top--form' >
-                            <div className='inputs'>
-                                <div className="PlacesSearch--container">
-                                    <p>Wpisz swoje imię i nazwisko</p>
-                                    <div className='input--container'>
-                                        <input className='text--input' onChange={(e)=> setName(e.target.value)} id="fullName" name="fullName" type="text" placeholder='Imię i nazwisko'/>
-                                    </div>
-                                    <span className='error'>{nameErr}</span>
+                        <div className='avatar--editor'>
+                            <div className='editor--container'>
+                                <input type='file' id='profile--image' onChange={e => setUploadImg(e.target.files[0])} hidden/>
+                                <div className='profile--image--div'>
+                                    <label for='profile--image' className='profile--image--button'>Dodaj zdjęcie profilowe</label>
+                                    <span className='error'>{avatarErr}</span>
                                 </div>
-
-                                <div className="PlacesSearch--container">
-                                    <p>Telefon kontaktowy</p>
-                                    <div className='input--container'>
-                                        <input className='text--input' onChange={(e)=> setPhoneNum(e.target.value)} id="fullName" name="fullName" type="text" maxLength="9" placeholder='Numer telefonu'/>
-                                    </div>
-                                    <span className='error'>{phoneErr}</span>
-                                </div>
-                            </div>
-
-                            <div className='avatar--editor'>
-                                <Avatar
+                                <AvatarEditor
+                                    ref={e => setAvRef(e)}
+                                    image={uploadImg}
                                     width={200}
                                     height={200}
-                                    imageWidth={200}
-                                    label='Wybierz zdjęcie profilowe'
-                                    labelStyle={{fontWeight: 500}}
-                                    onCrop={e => {
-                                        fetch(e)
+                                    border={0}
+                                    borderRadius={200}
+                                    color={[255, 255, 255, 0.6]}
+                                    scale={zoom}
+                                    style={{backgroundImage: 'url(https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049_1280.png)', backgroundSize: 'cover', borderRadius: '200px'}}
+                                    rotate={0}
+                                    onImageReady={()=> {
+                                        fetch(avRef.getImageScaledToCanvas().toDataURL())
                                         .then(e => e.blob())
-                                        .then(l => setImage(l))
+                                        .then(img => setImage(img))
                                     }}
-                                    onClose={()=>setImage('')}
-                                    src={image}
+                                    onImageChange={()=> {
+                                        fetch(avRef.getImageScaledToCanvas().toDataURL())
+                                        .then(e => e.blob())
+                                        .then(img => setImage(img))
+                                    }}
                                 />
-                                <span className='error'>{avatarErr}</span>
+
+                                <Slider 
+                                min={1.2}
+                                max={10}
+                                step={0.1}
+                                value={zoom}
+                                tooltip={false}
+                                onChange={e => setZoom(e)}
+                                orientation="vertical"
+                                />
                             </div>
+                        </div>
+
+                        <div className="PlacesSearch--container">
+                            <p>Wpisz swoje imię i nazwisko</p>
+                            <div className='input--container'>
+                                <input className='text--input' onChange={(e)=> setName(e.target.value)} id="fullName" name="fullName" type="text" placeholder='Imię i nazwisko'/>
+                            </div>
+                            <span className='error'>{nameErr}</span>
+                        </div>
+
+                        <div className="PlacesSearch--container">
+                            <p>Telefon kontaktowy</p>
+                            <div className='input--container'>
+                                <input className='text--input' onChange={(e)=> setPhoneNum(e.target.value)} id="fullName" name="fullName" type="text" maxLength="9" placeholder='Numer telefonu'/>
+                            </div>
+                            <span className='error'>{phoneErr}</span>
                         </div>
 
                         <div className="PlacesSearch--container">

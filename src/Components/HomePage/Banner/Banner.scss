@@ -1,6 +1,11 @@
 .banner {
-    width: 100wh;
-    height: 50vh;
+    width: 100%;
+    height: 25rem;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(156, 156, 156, 0.4)),
+    url(https://images.pexels.com/photos/4046308/pexels-photo-4046308.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-size: 100%;
+    background-position: center;
+    
 
     display: flex;
     flex-direction: column-reverse;
@@ -48,29 +53,10 @@
         }
     }
 
-
-    &::after {
-        content: '';
-        width: 100%;
-        height: 100%;
-
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.534), rgba(255, 255, 255, 0.5)),
-            url(https://images.pexels.com/photos/4046308/pexels-photo-4046308.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-        background-size: cover;
-        background-position: 0 150%;
-
-        background-attachment: fixed;
-
-        position: absolute;
-
-        z-index: -1;
-    }
-
-
     div.title--box {
         padding: 4%;
         font-size: 2rem;
-        width: 60%;
+        width: 95%;
         color: #ffffffe5;
 
         h1 {
@@ -85,10 +71,10 @@
     }
 }
 
-@media (max-width: 576px) { 
+
+@media (max-width: 615px) { 
     .banner {
-        height: 25vh;
-    
+        height: 12rem;
         .user {
             & > button {
                 padding: 0.5rem 0.8rem;
@@ -107,7 +93,7 @@
     
         &::after {
             background-position: -3rem -5rem;
-            background-size: 130%;
+            background-size: 100%;
         }
     
     

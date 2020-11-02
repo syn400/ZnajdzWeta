@@ -3,25 +3,13 @@
     justify-content: space-around;
     align-items: center;
     margin: auto 0;
-    height: 75vh;
+    height: 45rem;
     color: #ffffffe5;
 
-    &::after {
-        content: '';
-        width: 100%;
-        height: 75vh;
-
-        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.733), rgba(66, 66, 66, 0.747)),
-            url(https://images.pexels.com/photos/1630925/pexels-photo-1630925.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-        background-size: cover;
-        background-position: 0 100%;
-
-        background-attachment: fixed;
-
-        position: absolute;
-
-        z-index: -1;
-    }
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.733), rgba(66, 66, 66, 0.747)),
+    url(https://images.pexels.com/photos/1630925/pexels-photo-1630925.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-size: cover;
+    background-position: center;
 
     h2 {
         font-weight: 400;
@@ -97,19 +85,11 @@
 
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1050px) {
     .about {
         flex-direction: column;
-        justify-content: space-around;
-        height: 135vh;
-    
-        &::after {
-            content: '';
-            width: 100%;
-            height: 135vh;
-            background-size: 420%;
-            background-position: -27rem -23rem;
-        }
+        justify-content: space-evenly;
+        height: 60rem;
     
         h2 {
             font-weight: 400;
@@ -126,21 +106,69 @@
             border: none;
         }
     
-        & > div {
-            width: 85%;
-            height: 50%;
+        & > div, & div.comments {
+            width: 60%;
+            height: 46%;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
     
-        & div.comments {
-            width: 85%;
-            height: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+    }
+}
+
+
+@media (max-width: 620px) {
+    .about {
+    
+        h2 {
+            font-size: 2rem;
+        }
+        .about--us p {
+            font-size: 1.3rem;
+        }
+
+        & > div, & div.comments {
+            width: 80%;
+            height: 45%;
         }
     
+    }
+}
+
+@media (max-width: 385px) {
+    .about {
+        height: 80rem;
+        h2 {
+            font-size: 2rem;
+        }
+        .about--us p {
+            font-size: 1.3rem;
+        }
+
+
+
+        & > div, & div.comments {
+            height: 50%;
+        }
+
+        div.comments div.comments--container > div{
+            height: 7rem;
+        }
+    
+    }
+}
+
+@media (max-width: 330px) {
+    .about {
+        div.comments div.comments--container > div{
+            h3 {
+                font-size: 0.8rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
     }
 }

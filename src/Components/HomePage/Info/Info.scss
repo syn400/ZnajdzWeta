@@ -1,7 +1,7 @@
 
 .contact {
     display: flex;
-    height: 40vh;
+    height: 25rem;
     width: 100%;
     margin: 0 auto;
     color: #757575;
@@ -42,8 +42,8 @@
             background-color: #3f8d438a;
             font-size: 2rem;
             border: none;
-            border-radius: 2rem;
-            padding: 2rem 8.7rem;
+            border-radius: 6rem;
+            padding: 2rem 4.7rem;
             transition: transform 0.2s, background-color 0.5s;
 
             &:focus {
@@ -109,23 +109,9 @@
     }
 }
 
-@media (max-width: 576px) {
 
+@media (max-width: 1015px) {
     .contact {
-        display: flex;
-        height: 80vh;
-        justify-content: space-evenly;
-    
-        
-        & > div {
-            height: 100%;
-            width: 100%;
-            margin: 0 auto;
-    
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
     
         div.register {
             height: 40%;
@@ -148,6 +134,27 @@
                 padding: 1.5rem 3rem;
             }
         }
+    }
+}
+
+@media (max-width: 800px) {
+
+    .contact {
+        display: flex;
+        height: 35rem;
+        justify-content: space-evenly;
+    
+        
+        & > div {
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+    
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
     
         div.info--container {
             height: 50%;
@@ -166,7 +173,7 @@
     
             h2 {
                 font-weight: 300;
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
     
             .socials {
@@ -175,9 +182,51 @@
             }
 
             a {
-                font-size: 3.5rem;
+                font-size: 2.5rem;
             }
         }
     }
+}
 
+@media (max-width: 385px) {
+    .contact {
+        height: 35rem;
+
+        div.register {
+            h2 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+        }
+    
+        div.info--container {
+            height: 50%;
+            margin-left: 0;
+            justify-content: center;
+            text-align: center;
+    
+            p {
+                font-size: 1.4rem;
+                margin-top: 1rem;
+    
+                span {
+                    margin-right: 0.7rem;
+                }
+            }
+    
+            h2 {
+                font-weight: 300;
+                font-size: 2rem;
+            }
+    
+            .socials {
+                margin-bottom: 1rem;
+                margin-top: 2rem;
+            }
+
+            a {
+                font-size: 2.5rem;
+            }
+        }
+    }
 }
