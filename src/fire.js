@@ -4,14 +4,14 @@ import 'firebase/firestore';
 import 'firebase/storage';
 
 const app = firebase.initializeApp({
-    apiKey: "AIzaSyAaT7cD6zvSuMc8kw92S9V9c4CmxPYgs8w",
-    authDomain: "znajdzweta-292009.firebaseapp.com",
-    databaseURL: "https://znajdzweta-292009.firebaseio.com",
-    projectId: "znajdzweta-292009",
-    storageBucket: "znajdzweta-292009.appspot.com",
-    messagingSenderId: "541504240851",
-    appId: "1:541504240851:web:a7f4c0712703665deda826",
-    measurementId: "G-188MG7Z8LK"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASURMENT_ID
 });
 
 export default app;
